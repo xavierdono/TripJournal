@@ -1,10 +1,9 @@
-(function() {
-    'use strict';
+(function () {
+  'use strict';
 
-	angular.module('starter.trip', [])
+  angular.module('starter.trip', [])
 
-	.controller('TripCtrl', function($scope) {
-			console.log("TripCtrl");
-	});
-	
+  .controller('TripCtrl', function ($scope, Trips) {
+    $scope.items = Trips.all();
+  });
 })();
