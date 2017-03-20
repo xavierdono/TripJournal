@@ -3,6 +3,8 @@
 
   angular.module('starter', ['ionic',
       'starter.plan',
+      'starter.addplan',
+      'starter.showplan',
       'starter.trip',
       'starter.addtrip',
       'starter.showtrip',
