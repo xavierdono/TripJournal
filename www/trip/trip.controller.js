@@ -3,7 +3,7 @@
 
   angular.module('starter.trip', [])
 
-  .controller('TripCtrl', function ($scope, Trips) {
-    $scope.items = Trips.all();
+  .controller('TripCtrl', function ($scope, TripService) {
+    $scope.items = TripService.all();
   });
 })();

@@ -1,6 +1,6 @@
 angular.module('starter.services.trips', [])
 
-.factory('Trips', function() {
+.factory('TripService', function() {
 
   var trips = [{
       id: 0,

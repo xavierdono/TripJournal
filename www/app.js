@@ -1,4 +1,12 @@
-angular.module('starter', ['ionic', 'starter.plan', 'starter.trip', 'starter.addtrip', 'starter.showtrip', 'starter.services.trips'])
+angular.module('starter', ['ionic', 
+						   'starter.plan', 
+						   'starter.trip', 
+						   'starter.addtrip', 
+						   'starter.showtrip', 
+						   'starter.services.trips', 
+						   'starter.services.file',
+						   'starter.services.image',
+						   'ngCordova'])
 
 .run(function ($ionicPlatform) {
   $ionicPlatform.ready(function () {

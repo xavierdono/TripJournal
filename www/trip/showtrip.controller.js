@@ -3,7 +3,7 @@
 
   angular.module('starter.showtrip', [])
 
-  .controller('ShowTripCtrl', function ($scope, $stateParams, Trips) {
-    $scope.item = Trips.get($stateParams.tripId);
+  .controller('ShowTripCtrl', function ($scope, $stateParams, TripService) {
+    $scope.item = TripService.get($stateParams.tripId);
   });
 })();

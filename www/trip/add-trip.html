@@ -1,7 +1,27 @@
 <ion-view view-title="Ajouter un voyage">
 	<ion-content class="padding">
-		<p>
-		  AddTripCtrl
-		</p>
+		<label class="item item-input">
+		  <span class="input-label">Titre :</span>
+		  <input type="text">
+		</label>
+		<label class="item item-input">
+			<span class="input-label">Date</span>
+			<input type="date">
+		</label>
+		<label class="item item-input">
+			<textarea rows="15" placeholder="Commentaires"></textarea>
+		</label>
+		<label class="item item-input">
+			<button class="button button-positive" ng-click="addMedia()">
+			  Ajouter une image
+			</button>
+			<span>&nbsp;&nbsp;</span>
+			<button class="button button-positive">
+			  Enregistrer
+			</button>
+		</label>
+		<ion-scroll direction="x" style="height:100px; min-height: 100px; overflow: scroll; white-space: nowrap;">
+			<img ng-repeat="image in images" ng-src="{{ urlForImage(image) }}" style="height:100px; padding: 5px 5px 5px 5px;"/>
+		</ion-scroll>
 	</ion-content>
 </ion-view>
