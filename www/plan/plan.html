@@ -1,3 +1,20 @@
 <ion-view view-title="Plan">
 
+		<ion-list>
+      		<ion-item ng-repeat="item in items" href="#/tab/plan.show/{{ item.id }}">
+		        <div class="card">
+		            <div class="item item-calm">
+		              {{item.title}} - {{item.date}}
+		            </div>
+		        </div>
+      		</ion-item>
+    	</ion-list>
+    	<div class="float-button" style="background-color:#11c1f3;">
+		<span class="height-fix">
+	   		<a class="content" href="#/tab/plan.add">
+	    		<i class="ion-android-add"> </i>
+	   		</a>
+	  	</span>
+	</div>
+	
 </ion-view>

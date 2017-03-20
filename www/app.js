@@ -51,6 +51,28 @@
       }
     })
 
+     .state('tab.plan-add', {
+    url: '/plan.add',
+    views: {
+      'tab-plan': {
+        templateUrl: 'plan/add-plan.html',
+        controller: 'AddPlanCtrl'
+      }
+    }
+  })
+
+  .state('tab.plan-show', {
+    url: '/plan.show/:planId',
+    views: {
+      'tab-plan': {
+        templateUrl: 'plan/show-plan.html',
+        controller: 'ShowPlanCtrl'
+      }
+    }
+    })
+
+  
+
     .state('tab.day-add', {
       url: '/day.add',
       views: {
