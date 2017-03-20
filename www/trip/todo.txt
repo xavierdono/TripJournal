@@ -1,0 +1,40 @@
+			<button class="button button-positive" ng-click="addMedia()">
+			  Ajouter une image
+			</button>
+					<ion-scroll direction="x" style="height:100px; min-height: 100px; overflow: scroll; white-space: nowrap;">
+			<img ng-repeat="image in images" ng-src="{{ urlForImage(image) }}" style="height:100px; padding: 5px 5px 5px 5px;"/>
+		</ion-scroll>
+		
+		, $cordovaDevice, $cordovaFile, $ionicPlatform, $ionicActionSheet, ImageService, FileService
+		
+		    $scope.images = FileService.images();
+
+    $scope.urlForImage = function (imageName) {
+      var trueOrigin = cordova.file.dataDirectory + imageName;
+      return trueOrigin;
+    }
+
+    $scope.addMedia = function () {
+      $scope.hideSheet = $ionicActionSheet.show({
+          buttons: [{
+              text: 'Prendre une photo'
+            }, {
+              text: 'Photos sur le téléphone'
+            }
+          ],
+          titleText: 'Ajouter une photo',
+          cancelText: 'Annuler',
+          buttonClicked: function (index) {
+            $scope.addImage(index);
+          }
+        });
+    }
+
+    $scope.addImage = function (type) {
+      $scope.hideSheet();
+      ImageService.handleMediaDialog(type).then(function () {
+        $scope.$apply();
+      }).catch(function (error) {
+        alert(error);
+      });;
+    }

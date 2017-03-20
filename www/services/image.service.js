@@ -48,7 +48,7 @@ angular.module('starter.services.image', [])
             reject();
           });
       });
-    })
+    });
   }
   return {
     handleMediaDialog: saveMedia

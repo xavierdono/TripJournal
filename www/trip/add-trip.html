@@ -2,26 +2,16 @@
 	<ion-content class="padding">
 		<label class="item item-input">
 		  <span class="input-label">Titre :</span>
-		  <input type="text">
+		  <input type="text" ng-model="trip.title">
 		</label>
 		<label class="item item-input">
 			<span class="input-label">Date</span>
-			<input type="date">
+			<input type="date" ng-model="trip.dateDebut">
 		</label>
 		<label class="item item-input">
-			<textarea rows="15" placeholder="Commentaires"></textarea>
-		</label>
-		<label class="item item-input">
-			<button class="button button-positive" ng-click="addMedia()">
-			  Ajouter une image
-			</button>
-			<span>&nbsp;&nbsp;</span>
-			<button class="button button-positive">
+			<button class="button button-block button-positive" ng-click="addTrip(trip)">
 			  Enregistrer
 			</button>
 		</label>
-		<ion-scroll direction="x" style="height:100px; min-height: 100px; overflow: scroll; white-space: nowrap;">
-			<img ng-repeat="image in images" ng-src="{{ urlForImage(image) }}" style="height:100px; padding: 5px 5px 5px 5px;"/>
-		</ion-scroll>
 	</ion-content>
 </ion-view>
