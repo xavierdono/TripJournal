@@ -4,6 +4,6 @@
   angular.module('starter.trip', [])
 
   .controller('TripCtrl', function ($scope, TripService) {
-    $scope.items = TripService.all();
+    $scope.trips = TripService.all();
   });
 })();
