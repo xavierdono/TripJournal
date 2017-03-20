@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('starter.addtrip', [])
+  angular.module('starter.addplan', [])
 
   .controller('AddPlanCtrl', function ($scope) {
     console.log("AddPlanCtrl");
