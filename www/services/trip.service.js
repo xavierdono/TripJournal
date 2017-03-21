@@ -12,26 +12,29 @@
         img: 'img/trip/titre.jpg',
         title: 'Australie',
         date: 'Février 2017, 7 jours',
-        dateDebut: '11/02/2017',
+        dateDebut: '10/01/2017',
         dateFin: '18/01/2017',
         days: [{
             id: 0,
             title: 'Jour 1',
-            date: '',
-            comment: '',
+            dateShow: '10/01/2017',
+            date: '2017-01-10',
+            comment: 'Bla bla',
             images: []
           }, {
             id: 1,
             title: 'Jour 2',
-            date: '',
-            comment: '',
+            dateShow: '11/01/2017',
+            date: '2017-01-11',
+            comment: 'blo blo',
             images: []
 
           }, {
             id: 2,
             title: 'Jour 3',
-            date: '',
-            comment: '',
+            dateShow: '12/01/2017',
+            date: '2017-01-12',
+            comment: 'Blu blu',
             images: []
 
           }
