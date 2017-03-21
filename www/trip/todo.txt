@@ -36,5 +36,5 @@
         $scope.$apply();
       }).catch(function (error) {
         alert(error);
-      });;
+      });
     }

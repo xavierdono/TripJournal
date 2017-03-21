@@ -74,26 +74,7 @@
       }
     })
 
-    .state('tab.day-add', {
-      url: '/day.add',
-      views: {
-        'tab-trip': {
-          templateUrl: 'trip/add-day.html',
-          controller: 'AddDayCtrl'
-        }
-      }
-    })
-
-    .state('tab.day-edit', {
-      url: '/day.edit/:dayId',
-      views: {
-        'tab-trip': {
-          templateUrl: 'trip/edit-day.html',
-          controller: 'EditDayCtrl'
-        }
-      }
-    })
-
+    // Afficher les voyages (Mes carnets de voyage)
     .state('tab.trip', {
       url: '/trip',
       views: {
@@ -104,6 +85,7 @@
       }
     })
 
+    // Ajouter un voyage
     .state('tab.trip-add', {
       url: '/trip.add',
       views: {
@@ -114,12 +96,35 @@
       }
     })
 
+    // Afficher un voyage (Affiche les jours)
     .state('tab.trip-show', {
       url: '/trip.show/:tripId',
       views: {
         'tab-trip': {
           templateUrl: 'trip/show-trip.html',
           controller: 'ShowTripCtrl'
+        }
+      }
+    })
+
+    // Ajout une journée
+    .state('tab.day-add', {
+      url: '/day.add/:tripId',
+      views: {
+        'tab-trip': {
+          templateUrl: 'trip/add-day.html',
+          controller: 'AddDayCtrl'
+        }
+      }
+    })
+
+    // Editer une journée
+    .state('tab.day-edit', {
+      url: '/day.edit/:tripId/:dayId',
+      views: {
+        'tab-trip': {
+          templateUrl: 'trip/edit-day.html',
+          controller: 'EditDayCtrl'
         }
       }
     });

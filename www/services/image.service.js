@@ -31,7 +31,7 @@
         allowEdit: false,
         encodingType: Camera.EncodingType.JPEG,
         popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: false
+        saveToPhotoAlbum: true
       };
     }
 
@@ -43,6 +43,13 @@
           var name = imageUrl.substr(imageUrl.lastIndexOf('/') + 1);
           var namePath = imageUrl.substr(0, imageUrl.lastIndexOf('/') + 1);
           var newName = makeid() + name;
+
+          /*
+          if(name.indexOf('?') != -1) {
+          name = name.substr(0, name.lastIndexOf('?'));
+          newName = makeid() + name;
+          }
+          */
           $cordovaFile.copyFile(namePath, name, cordova.file.dataDirectory, newName)
           .then(function (info) {
             FileService.storeImage(newName);

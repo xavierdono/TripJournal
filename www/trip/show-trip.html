@@ -1,12 +1,12 @@
 <ion-view view-title="{{ trip.title }}">
 	<ion-list no-lines>
-	  <ion-item ng-repeat="day in trip.days" href="#/tab/day.edit/{{ day.id }}">
-		<h1>{{ day.title }}</h1>
+	  <ion-item ng-repeat="day in trip.days" href="#/tab/day.edit/{{ trip.id }}/{{ day.id }}">
+		<h1>{{ day.title }} - {{ day.dateShow }}</h1>
 	  </ion-item>
 	</ion-list>
 	<div class="float-button">
 		<span class="height-fix">
-	   		<a class="content" href="#/tab/day.add">
+	   		<a class="content" href="#/tab/day.add/{{ trip.id }}">
 	    		<i class="ion-android-add"> </i>
 	   		</a>
 	  	</span>

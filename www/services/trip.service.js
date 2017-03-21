@@ -16,18 +16,50 @@
         dateFin: '18/01/2017',
         days: [{
             id: 0,
-            title: 'Jour 1'
+            title: 'Jour 1',
+            date: '',
+            comment: '',
+            images: []
           }, {
             id: 1,
-            title: 'Jour 2'
+            title: 'Jour 2',
+            date: '',
+            comment: '',
+            images: []
+
           }, {
             id: 2,
-            title: 'Jour 3'
+            title: 'Jour 3',
+            date: '',
+            comment: '',
+            images: []
+
           }
         ]
       }
     ];
 
+    function diffdate(d1, d2, u) {
+      var div = 1;
+      switch (u) {
+      case 's':
+        div = 1000;
+        break;
+      case 'm':
+        div = 1000 * 60;
+        break;
+      case 'h':
+        div = 1000 * 60 * 60;
+        break;
+      case 'd':
+        div = 1000 * 60 * 60 * 24;
+        break;
+      }
+
+      var Diff = d2.getTime() - d1.getTime();
+      return Math.ceil(Diff / div);
+    }
+    
     return {
       all: function () {
         return trips;
@@ -47,7 +79,18 @@
         trip.id = trips.length;
         trip.date = mois[trip.dateDebut.getMonth()] + ' ' + trip.dateDebut.getFullYear() + ', début du voyage';
         trip.img = 'img/trip/trip.jpg';
+        trip.days = [];
         trips.push(trip);
+      },
+      addDay: function (tripID, day) {
+        for (var i = 0; i < trips.length; i++) {
+          if (trips[i].id === parseInt(tripID)) {
+            day.id = trips[i].days.length;
+            trips[i].dateFin = day.date;
+            trips[i].date = trips[i].date.split(',')[0] + ', ' + diffdate(trips[i].dateDebut, trips[i].dateFin, 'd') + ' jours';
+            trips[i].days.push(day);
+          }
+        }
       }
     };
   });
