@@ -10,6 +10,7 @@
       'starter.showtrip',
       'starter.addday',
       'starter.editday',
+      'starter.services.plans',
       'starter.services.trips',
       'starter.services.file',
       'starter.services.image',

@@ -9,7 +9,7 @@
 
     var trips = [{
         id: 0,
-        img: '/img/trip/titre.jpg',
+        img: 'img/trip/titre.jpg',
         title: 'Australie',
         date: 'Février 2017, 7 jours',
         dateDebut: '11/02/2017',
@@ -46,7 +46,7 @@
       add: function (trip) {
         trip.id = trips.length;
         trip.date = mois[trip.dateDebut.getMonth()] + ' ' + trip.dateDebut.getFullYear() + ', début du voyage';
-        trip.img = '/img/trip/trip.jpg';
+        trip.img = 'img/trip/trip.jpg';
         trips.push(trip);
       }
     };

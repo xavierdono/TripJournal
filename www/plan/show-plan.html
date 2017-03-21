@@ -1,7 +1,15 @@
-<ion-view>
-	<ion-content class="padding">
-		<p>
-		  
-		</p>
-	</ion-content>
+<ion-view view-title="{{ plans[0].title }}">
+	<ion-list>
+  		<ion-item ng-repeat="item in plans">
+  			{{item.data}}
+  		</ion-item>
+    </ion-list>	
+
+	<div class="float-button" style="background-color: #11c1f3;">
+		<span class="height-fix">
+	   		<a class="content" href="#/tab/trip.add">
+	    		<i class="ion-android-add"> </i>
+	   		</a>
+	  	</span>
+	</div>
 </ion-view>
