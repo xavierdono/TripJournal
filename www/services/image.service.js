@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  
+
   angular.module('starter.services.image', [])
 
   .factory('ImageService', function ($cordovaCamera, FileService, $q, $cordovaFile) {
@@ -46,12 +46,11 @@
           var newName = makeid() + name;
 
           // Fix when PHOTOLIBRARY
-          if(name.indexOf('?') != -1) {
+          if (name.indexOf('?') != -1) {
             name = name.substr(0, name.lastIndexOf('?'));
             newName = makeid() + name;
           }
-          alert('name: ' + name);
-                    
+
           $cordovaFile.copyFile(namePath, name, cordova.file.dataDirectory, newName)
           .then(function (info) {
             FileService.storeImage(newName);

@@ -36,7 +36,6 @@
             date: '2017-01-12',
             comment: 'Blu blu',
             images: []
-
           }
         ]
       }
@@ -94,7 +93,14 @@
             trips[i].days.push(day);
           }
         }
-      }
+      },
+      setDefaultImage: function (tripID, imageURL) {
+        for (var i = 0; i < trips.length; i++) {
+          if (trips[i].id === parseInt(tripID)) {
+            trips[i].img = imageURL;
+          }
+        }
+      }      
     };
   });
 })();
