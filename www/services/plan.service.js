@@ -43,10 +43,7 @@
         }
         return tmp;
       },
-      add: function (plan, planId) {
-        plan.id   = plans.length;
-        plan.pid  = planId;
-        plan.data = 'test';
+      add: function (plan) {
         plans.push(plan);
       }
     };

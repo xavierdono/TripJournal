@@ -1,13 +1,17 @@
-<ion-view view-title="{{ plans[0].title }}">
+<ion-view view-title="{{ trip.title }}">
 	<ion-list>
   		<ion-item ng-repeat="item in plans">
-  			{{item.data}}
+  			<div class="list card">
+				<div class="item item-image">
+			    	{{item.data}}
+			  	</div>
+			</div>
   		</ion-item>
     </ion-list>	
 
 	<div class="float-button" style="background-color: #11c1f3;">
 		<span class="height-fix">
-	   		<a class="content" href="#/tab/trip.add">
+	   		<a class="content" href="#/tab/plan.add/{{trip.id}}">
 	    		<i class="ion-android-add"> </i>
 	   		</a>
 	  	</span>

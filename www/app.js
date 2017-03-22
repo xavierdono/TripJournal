@@ -55,7 +55,7 @@
     })
 
     .state('tab.plan-add', {
-      url: '/plan.add',
+      url: '/plan.add/:planId',
       views: {
         'tab-plan': {
           templateUrl: 'plan/add-plan.html',
