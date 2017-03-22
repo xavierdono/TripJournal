@@ -22,14 +22,15 @@
         source = Camera.PictureSourceType.CAMERA;
         break;
       case 1:
-        source = Camera.PictureSourceType.PHOTOLIBRARY;
+        source = Camera.PictureSourceType.SAVEDPHOTOALBUM;
         break;
       }
       return {
-        destinationType: Camera.DestinationType.FILE_URI,
+        destinationType: Camera.DestinationType.NATIVE_URI,
         sourceType: source,
         allowEdit: false,
-        encodingType: Camera.EncodingType.JPEG,
+        quality: 100,
+        encodingType: Camera.EncodingType.PNG,
         popoverOptions: CameraPopoverOptions,
         saveToPhotoAlbum: true
       };
@@ -44,12 +45,13 @@
           var namePath = imageUrl.substr(0, imageUrl.lastIndexOf('/') + 1);
           var newName = makeid() + name;
 
-          /*
+          // Fix when PHOTOLIBRARY
           if(name.indexOf('?') != -1) {
-          name = name.substr(0, name.lastIndexOf('?'));
-          newName = makeid() + name;
+            name = name.substr(0, name.lastIndexOf('?'));
+            newName = makeid() + name;
           }
-          */
+          alert('name: ' + name);
+                    
           $cordovaFile.copyFile(namePath, name, cordova.file.dataDirectory, newName)
           .then(function (info) {
             FileService.storeImage(newName);
