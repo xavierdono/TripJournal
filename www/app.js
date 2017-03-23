@@ -1,3 +1,4 @@
+  var db = null;
 (function () {
   'use strict';
 
@@ -16,19 +17,26 @@
       'starter.services.image',
       'ngCordova'])
 
-  .run(function ($ionicPlatform) {
+  .run(function ($ionicPlatform, $cordovaSQLite) {
     $ionicPlatform.ready(function () {
+
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
       if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
-
       }
       if (window.StatusBar) {
         // org.apache.cordova.statusbar required
         StatusBar.styleDefault();
       }
+
+      document.addEventListener('deviceready', function() {
+        db = window.sqlitePlugin.openDatabase({name: 'tripjournal.db', location: 'default'});
+      });
+
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS plan (id_plan integer primary key, id_trip integer, data text, time text)");
+
     });
   })
 
