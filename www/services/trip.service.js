@@ -14,6 +14,7 @@
         date: 'Février 2017, 7 jours',
         dateDebut: '10/01/2017',
         dateFin: '18/01/2017',
+        clos: 0,
         days: [{
             id: 0,
             title: 'Jour 1',
@@ -77,6 +78,14 @@
         }
         return null;
       },
+      closeTrip: function (tripId) {
+        for (var i = 0; i < trips.length; i++) {
+          if (trips[i].id === parseInt(tripId)) {
+            trips[i].clos = 1;
+          }
+        }
+        return null;
+      },      
       getDay: function (tripId, dayId) {
         for (var i = 0; i < trips.length; i++) {
           if (trips[i].id === parseInt(tripId)) {
