@@ -12,18 +12,20 @@
     $scope.trip = TripService.get($scope.tripId);
     $scope.day = TripService.getDay($scope.tripId, $scope.dayId);
 
+    console.log($scope.day.date);
+    
     // Fix bug with <label>
     $scope.editDay = function (day) {
-      var new_day = {
+      var edited_day = {
         id: $scope.dayId,
         title: day.title,
         date: day.date,
-        dateShow: day.date.getDate() + '/' + day.date.getMonth() + '/' + day.date.getFullYear(),
+        dateShow: day.date.getDate() + '/' + (((day.date.getMonth() + 1) < 10 ? '0' : '') + (day.date.getMonth() + 1))  + '/' + day.date.getFullYear(),
         comment: day.comment,
         images: $scope.images
       };
 
-      //TripService.editDay($scope.tripId, new_day);
+      TripService.editDay($scope.tripId, edited_day);
       window.location.href = '#/tab/trip.show/' + $scope.tripId;
     }
 

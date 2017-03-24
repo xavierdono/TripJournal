@@ -63,7 +63,7 @@
       var new_day = {
         title: day.title,
         date: day.date,
-        dateShow: day.date.getDate() + '/' + day.date.getMonth() + '/' + day.date.getFullYear(),
+        dateShow: day.date.getDate() + '/' + (((day.date.getMonth() + 1) < 10 ? '0' : '') + (day.date.getMonth() + 1)) + '/' + day.date.getFullYear(),
         comment: day.comment,
         images: $scope.images
       };
