@@ -77,7 +77,7 @@
 
     $scope.urlForImage = function (imageName) {
       // Charger les images par voyage ($scope.tripId)
-      var trueOrigin = cordova.file.dataDirectory + '/' + $scope.tripId + imageName;
+      var trueOrigin = cordova.file.dataDirectory + '/' + $scope.tripId + '/' + imageName;
       return trueOrigin;
     }
 

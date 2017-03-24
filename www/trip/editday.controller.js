@@ -28,8 +28,8 @@
     }
 
     $scope.urlForImage = function (imageName) {
-      // TODO : Charger les images par voyage ($scope.tripId)
-      var trueOrigin = cordova.file.dataDirectory + imageName;
+      // Charger les images par voyage ($scope.tripId)
+      var trueOrigin = cordova.file.dataDirectory + '/' + $scope.tripId + '/' + imageName;
       return trueOrigin;
     }
 
@@ -51,8 +51,8 @@
 
     $scope.addImage = function (type) {
       $scope.hideSheet();
-      // TODO : Sauvegarder les images par voyage ($scope.tripId)
-      ImageService.handleMediaDialog(type);
+      // Sauvegarder les images par voyage ($scope.tripId)
+      ImageService.handleMediaDialog(type, $scope.tripId);
     }
 
   });
