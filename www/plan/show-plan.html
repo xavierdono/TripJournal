@@ -1,13 +1,19 @@
-<ion-view view-title="{{ trip.title }}">
-	<ion-list>
-  		<ion-item ng-repeat="item in plans">
-  			<div class="list card">
-				<div class="item item-image">
-			    	{{item.data}}
-			  	</div>
-			</div>
-  		</ion-item>
-    </ion-list>	
+<ion-view view-title="{{ trip.title }}" cache-view="false">
+	<ion-content>
+		<ion-list>
+	  		<ion-item ng-repeat="item in plans">
+	  			<div class="list card">
+					<div class="item item-image">
+				    	
+					<p ng-bind-html="item.data"></p>
+				    	<ion-item ng-repeat="image in item.images">
+				    		<img ng-src="{{image}}">
+				    	</ion-item>
+				  	</div>
+				</div>
+	  		</ion-item>
+	    </ion-list>
+	</ion-content>
 
 	<div class="float-button" style="background-color: #11c1f3;">
 		<span class="height-fix">

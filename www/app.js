@@ -35,6 +35,7 @@
         db = window.sqlitePlugin.openDatabase({name: 'tripjournal.db', location: 'default'});
       });
 
+      $cordovaSQLite.execute(db, "DROP TABLE IF EXISTS plan");
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS plan (id_plan integer primary key, id_trip integer, data text, time text)");
 
     });
