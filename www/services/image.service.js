@@ -36,7 +36,7 @@
       };
     }
 
-    function saveMedia(type) {
+    function saveMedia(type, tripId) {
       return $q(function (resolve, reject) {
         var options = optionsForType(type);
 
@@ -50,8 +50,15 @@
             name = name.substr(0, name.lastIndexOf('?'));
             newName = makeid() + name;
           }
+          
+          $cordovaFile.checkDir(cordova.file.dataDirectory, tripId)
+          .then(function (success) {
+            console.log("");
+          }, function (error) {
+            $cordovaFile.createDir(cordova.file.dataDirectory, tripId, false);
+          });          
 
-          $cordovaFile.copyFile(namePath, name, cordova.file.dataDirectory, newName)
+          $cordovaFile.copyFile(namePath, name, cordova.file.dataDirectory + '/' + tripId, newName)
           .then(function (info) {
             FileService.storeImage(newName);
             resolve();

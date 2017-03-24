@@ -77,9 +77,22 @@
         }
         return null;
       },
+      getDay: function (tripId, dayId) {
+        for (var i = 0; i < trips.length; i++) {
+          if (trips[i].id === parseInt(tripId)) {
+           
+            for (var j = 0; j < trips[i].days.length; j++) {
+              if (trips[i].days[j].id === parseInt(dayId)) {
+                return trips[i].days[j];
+              }
+            }
+          }
+        }
+        return null;
+      },     
       add: function (trip) {
         trip.id = trips.length;
-        trip.date = mois[trip.dateDebut.getMonth()] + ' ' + trip.dateDebut.getFullYear() + ', début du voyage';
+        trip.date = mois[trip.dateDebut.getMonth() + 1] + ' ' + trip.dateDebut.getFullYear() + ', début du voyage';
         trip.img = 'img/trip/trip.jpg';
         trip.days = [];
         trips.push(trip);
@@ -94,6 +107,9 @@
           }
         }
       },
+      editDay: function (tripID, day) {
+        console.log("editDay");
+      },      
       setDefaultImage: function (tripID, imageURL) {
         for (var i = 0; i < trips.length; i++) {
           if (trips[i].id === parseInt(tripID)) {

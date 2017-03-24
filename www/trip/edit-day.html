@@ -1,3 +1,30 @@
 <ion-view view-title="{{ day.title }}">
-	EditDayCtrl
+	<ion-content class="padding">
+		<label class="item item-input">
+		  <span class="input-label">Titre :</span>
+		  <input type="text" ng-model="day.title">
+		</label>
+		<label class="item item-input">
+			<span class="input-label">Date</span>
+			<input type="date" ng-model="day.date">
+		</label>
+		<label class="item item-input">
+      <textarea rows="10" ng-model="day.comment">
+      </textarea>
+		</label>
+    <ion-scroll direction="x" style="height:100px; min-height: 100px; overflow: scroll; white-space: nowrap;">
+			<img ng-repeat="image in images" ng-src="{{ urlForImage(image) }}" style="height:100px; padding: 5px 5px 5px 5px;" ng-click="showMedia(urlForImage(image))"/>
+		</ion-scroll>
+		<label class="item item-input">      
+    	<button class="button button-block button-positive" ng-click="addMedia()">
+			  Ajouter une photo
+			</button>      
+      &nbsp;&nbsp;
+      <label>
+        <button class="button button-block button-positive" ng-click="editDay(day)">
+          Enregistrer
+        </button>
+      </label>
+		</label>  
+	</ion-content>
 </ion-view>
