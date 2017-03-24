@@ -31,13 +31,26 @@
         StatusBar.styleDefault();
       }
 
+      // Création de la base
       document.addEventListener('deviceready', function() {
         db = window.sqlitePlugin.openDatabase({name: 'tripjournal.db', location: 'default'});
       });
 
+      // Plan
       $cordovaSQLite.execute(db, "DROP TABLE IF EXISTS plan");
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS plan (id_plan integer primary key, id_trip integer, data text, time text)");
 
+      // Voyage
+      $cordovaSQLite.execute(db, "DROP TABLE IF EXISTS trip");
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS trip (id_trip integer primary key, default_image text, title text, date text, dateDebut text, dateFin text, clos integer)");
+
+      // Journée
+      $cordovaSQLite.execute(db, "DROP TABLE IF EXISTS day");
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS day (id_day integer primary key, id_trip integer, title text, date text, dateShow text, comment text)");
+      
+      // Images
+      $cordovaSQLite.execute(db, "DROP TABLE IF EXISTS image");
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS image (id_image integer primary key, id_day integer, url text)");
     });
   })
 
