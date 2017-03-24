@@ -3,7 +3,7 @@
 
   angular.module('starter.editday', [])
 
-  .controller('EditDayCtrl', function ($scope, $stateParams, FileService, TripService, $ionicActionSheet) {
+  .controller('EditDayCtrl', function ($scope, $stateParams, FileService, TripService, $ionicActionSheet, $ionicModal) {
     $scope.tripId = $stateParams.tripId;
     $scope.dayId = $stateParams.dayId;
 
@@ -12,8 +12,39 @@
     $scope.trip = TripService.get($scope.tripId);
     $scope.day = TripService.getDay($scope.tripId, $scope.dayId);
 
-    console.log($scope.day.date);
+    // Charge la modal
+    $ionicModal.fromTemplateUrl('templates/image.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function (modal) {
+      $scope.modal = modal;
+    });
+
+    // Affiche la modal
+    $scope.showMedia = function (image) {
+      $scope.img = image;
+      $scope.modal.show();
+    }
+
+    // Fonction modal
+    $scope.deleteImage = function () {
+      FileService.removeImage($scope.img); // Retirer l'image de la collection "images"
+      ImageService.deleteMedia($scope.img, $scope.tripId); // Supprimer l'image du répertoire
+      
+      $scope.img = null;
+      $scope.modal.hide();
+    }
     
+    // Fonction modal
+    $scope.setDefaultImage = function (response) {
+      if (response === true) {
+        TripService.setDefaultImage($scope.tripId, $scope.img);
+      }
+
+      $scope.img = null;
+      $scope.modal.hide();
+    }
+
     // Fix bug with <label>
     $scope.editDay = function (day) {
       var edited_day = {

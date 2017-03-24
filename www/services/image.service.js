@@ -36,6 +36,11 @@
       };
     }
 
+    function deleteMedia(file, tripId) {
+      var deleted_file = file.substr(file.lastIndexOf('/') + 1);
+      $cordovaFile.removeFile(cordova.file.dataDirectory + '/' + tripId, deleted_file);
+    }
+    
     function saveMedia(type, tripId) {
       return $q(function (resolve, reject) {
         var options = optionsForType(type);
@@ -69,7 +74,8 @@
       });
     }
     return {
-      handleMediaDialog: saveMedia
+      handleMediaDialog: saveMedia,
+      deleteMedia : deleteMedia
     };
   });
 })();
