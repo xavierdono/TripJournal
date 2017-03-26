@@ -28,8 +28,9 @@
       all: function () {
         return plans;
       },
-      remove: function (plan) {
-        plans.splice(plans.indexOf(plan), 1);
+      remove: function (index) {
+        plans.splice(index, 1);
+        console.log(plans);
       },
       get: function (planId) {
         for (var i = 0; i < plans.length; i++) {

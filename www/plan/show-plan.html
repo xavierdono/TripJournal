@@ -5,12 +5,14 @@
 	  			<div class="list card">
 					<div class="item item-image">
 				    	
-					<p ng-bind-html="item.data"></p>
+					<p ng-bind-html="item.data"></p><br>
 				    	<ion-item ng-repeat="image in item.images">
 				    		<img ng-src="{{image}}">
 				    	</ion-item>
 				  	</div>
 				</div>
+				<ion-option-button class="button-assertive" ng-click="remove($index, {{item.id}})">Supprimer</ion-option-button>
+				<ion-option-button class="button-positive" ng-click="edit({{item.id}})">Modifier</ion-option-button>
 	  		</ion-item>
 	    </ion-list>
 	</ion-content>

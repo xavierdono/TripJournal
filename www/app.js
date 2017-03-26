@@ -5,6 +5,7 @@
   angular.module('starter', ['ionic',
       'starter.plan',
       'starter.addplan',
+      'starter.editplan',
       'starter.showplan',
       'starter.trip',
       'starter.addtrip',
@@ -32,9 +33,7 @@
       }
 
       // Création de la base
-      document.addEventListener('deviceready', function() {
-        db = window.sqlitePlugin.openDatabase({name: 'tripjournal.db', location: 'default'});
-      });
+      db = window.sqlitePlugin.openDatabase({name: 'tripjournal.db', location: 'default'});
 
       // Plan
       $cordovaSQLite.execute(db, "DROP TABLE IF EXISTS plan");
@@ -82,6 +81,16 @@
         'tab-plan': {
           templateUrl: 'plan/add-plan.html',
           controller: 'AddPlanCtrl'
+        }
+      }
+    })
+
+    .state('tab.plan-edit', {
+      url: '/plan.edit/:planId',
+      views: {
+        'tab-plan': {
+          templateUrl: 'plan/edit-plan.html',
+          controller: 'EditPlanCtrl'
         }
       }
     })
