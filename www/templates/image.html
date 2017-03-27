@@ -1,7 +1,7 @@
 <ion-modal-view>
     <ion-content>
       <ion-checkbox ng-model="image.default">Vignette par défaut</ion-checkbox>
-      <img ng-src="{{ img }}">
+      <img class="fullscreen-image" ng-src="{{ img }}">
       <button class="button button-block button-positive" ng-click="setDefaultImage(image.default)">
 			  Enregistrer
 			</button>
