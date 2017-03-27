@@ -9,8 +9,16 @@ describe('TripService', function () {
     })
   })
 
-  it("Il devrait y avoir une méthode all", function () {
-    expect(TripService.all).to.be.a('function')
+  it("Il devrait y avoir ces méthodes", function () {
+    expect(TripService.all).to.be.a('function');
+    expect(TripService.remove).to.be.a('function');
+    expect(TripService.get).to.be.a('function');
+    expect(TripService.closeTrip).to.be.a('function');
+    expect(TripService.getDay).to.be.a('function');
+    expect(TripService.add).to.be.a('function');
+    expect(TripService.addDay).to.be.a('function');
+    expect(TripService.editDay).to.be.a('function');
+    expect(TripService.setDefaultImage).to.be.a('function');
   })
 
   it("Il ne devrait y avoir que un seul voyage", function () {
