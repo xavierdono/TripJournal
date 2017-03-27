@@ -4,8 +4,8 @@
 	  		<ion-item ng-repeat="item in plans">
 	  			<div class="list card">
 					<div class="item item-image">
-				    	
-					<p ng-bind-html="item.data"></p><br>
+				    	{{item.data}}
+					<!--<p ng-bind-html="item.data.replace(/\n/g, '<br/>')"></p><br>-->
 				    	<ion-item ng-repeat="image in item.images">
 				    		<img ng-src="{{image}}">
 				    	</ion-item>

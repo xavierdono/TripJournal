@@ -7,11 +7,17 @@
 
   	$scope.remove = function(index, id) {
   		$scope.plans.splice(index, 1);
-        PlanService.remove(index, id);
+      PlanService.remove(index, id);
     }
 
-  	$scope.plans = PlanService.getpid($stateParams.planId);
-  	$scope.trip = TripService.get($stateParams.planId);
+
+    $scope.edit = function (planId) {
+      window.location.href = '#/tab/plan.edit/' + $stateParams.tripId + '/' + planId;
+    }
+
+
+  	$scope.plans = PlanService.getpid($stateParams.tripId);
+  	$scope.trip = TripService.get($stateParams.tripId);
 
   });
 })();

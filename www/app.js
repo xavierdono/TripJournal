@@ -76,7 +76,7 @@
     })
 
     .state('tab.plan-add', {
-      url: '/plan.add/:planId',
+      url: '/plan.add/:tripId',
       views: {
         'tab-plan': {
           templateUrl: 'plan/add-plan.html',
@@ -86,7 +86,7 @@
     })
 
     .state('tab.plan-edit', {
-      url: '/plan.edit/:planId',
+      url: '/plan.edit/:tripId/:planId',
       views: {
         'tab-plan': {
           templateUrl: 'plan/edit-plan.html',
@@ -96,7 +96,7 @@
     })
 
     .state('tab.plan-show', {
-      url: '/plan.show/:planId',
+      url: '/plan.show/:tripId',
       views: {
         'tab-plan': {
           templateUrl: 'plan/show-plan.html',

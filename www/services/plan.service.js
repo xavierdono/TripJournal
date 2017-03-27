@@ -30,7 +30,6 @@
       },
       remove: function (index) {
         plans.splice(index, 1);
-        console.log(plans);
       },
       get: function (planId) {
         for (var i = 0; i < plans.length; i++) {
@@ -49,17 +48,26 @@
         }
         return tmp;
       },
-      add: function (id_plan, comment) {
+
+      edit: function (id_plan, id_trip, comment) {
+        for (var i = 0; i < plans.length; i++) {
+          if (plans[i].id === parseInt(id_plan)) {
+              plans[i].comment = comment;
+          }
+        }
+
+      },
+      
+      add: function (id_trip, comment) {
 
         var lastItem = plans.length;
         var plan = {
           id: lastItem,
-          pid: parseInt(id_plan),
+          pid: parseInt(id_trip),
           title: 'Australie',
-          data: comment.replace(/\n/g, '<br/>'),
+          data: comment,
           images: []
         };
-        console.log(plan);
         plans.push(plan);
       }
     };
