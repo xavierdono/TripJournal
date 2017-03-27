@@ -3,7 +3,7 @@
 
   angular.module('starter.editday', [])
 
-  .controller('EditDayCtrl', function ($scope, $stateParams, FileService, TripService, $ionicActionSheet, $ionicModal) {
+  .controller('EditDayCtrl', function ($scope, $stateParams, FileService, ImageService, TripService, $ionicActionSheet, $ionicModal) {
     $scope.tripId = $stateParams.tripId;
     $scope.dayId = $stateParams.dayId;
 
