@@ -87,34 +87,36 @@
       all: function () {
         return null;
       },
-      remove: function (index, id_plan) {
+      remove: function (id_plan) {
           var query = "DELETE FROM plan WHERE id_plan = ?";
           $cordovaSQLite.execute(db, query, [id_plan]).then(function() {
               console.log("DELETED -> " + id_plan);
-              plans.splice(index, 1);
+              //plans.splice(index, 1);
           }, function(err) {
               console.error(err);
           });
       },
       get: function (id_plan) {
+
+          var obj = [];
           var query = "SELECT * FROM plan WHERE id_plan = ?";
           $cordovaSQLite.execute(db, query, [id_plan]).then(function(res) {
               if (res.rows.length > 0) {
-                  var obj = [{id_plan: res.rows.item(0).id_plan, 
+                  obj.push({id_plan: res.rows.item(0).id_plan, 
                              id_trip: res.rows.item(0).id_trip, 
                              data: res.rows.item(0).data, 
                              time: res.rows.item(0).time
-                           }];
+                           });
                   
-                  console.log(obj[0]);
-                  return obj[0];
+                  //console.log(obj);
+                  
               } else {
                   console.log("Problem get");
               }
           }, function(err) {
               console.error(err);
           });
-          
+          return obj;
       },
       edit: function(id_plan, comment) {
         var query = "UPDATE plan SET data = ? WHERE id_plan = ?";
