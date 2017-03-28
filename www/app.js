@@ -33,10 +33,11 @@
       }
 
       // Création de la base
-      db = window.sqlitePlugin.openDatabase({name: 'tripjournal.db', location: 'default'});
+      //db = window.sqlitePlugin.openDatabase({name: 'tripjournal.db', location: 'default'}); //android
+      db = window.openDatabase("tripjournal.db", "1.0", "TripJournal", 0); //browser
 
       // Plan
-      $cordovaSQLite.execute(db, "DROP TABLE IF EXISTS plan");
+      //$cordovaSQLite.execute(db, "DROP TABLE IF EXISTS plan");
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS plan (id_plan integer primary key, id_trip integer, data text, time text)");
 
       // Voyage
@@ -50,6 +51,9 @@
       // Images
       $cordovaSQLite.execute(db, "DROP TABLE IF EXISTS image");
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS image (id_image integer primary key, id_day integer, url text)");
+
+      $cordovaSQLite.execute(db, "DROP TABLE IF EXISTS image_plan");
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS image_plan (id_image integer primary key, id_plan integer, url text)");
     });
   })
 

@@ -1,4 +1,4 @@
-(function () {
+/*(function () {
   'use strict';
 
   angular.module('starter.services.plans', [])
@@ -73,8 +73,8 @@
     };
   });
 })();
-
-/*(function () {
+*/
+(function () {
   'use strict';
 
   angular.module('starter.services.plans', [])
@@ -85,48 +85,49 @@
 
     return {
       all: function () {
-
-          var query = "SELECT * FROM plan ORDER BY time DESC";
-          $cordovaSQLite.execute(db, query, []).then(function(res) {
-              if (res.rows.length > 0) {
-                  for (var i = 0; i < res.rows.length; i++) {
-                      var obj = {id_plan: res.rows.item(i).id_plan, 
-                                 id_trip: res.rows.item(i).id_trip, 
-                                 data: res.rows.item(i).data, 
-                                 time: res.rows.item(i).time
-                               };
-
-                      plans.push(obj);
-                  }
-              } else {
-                  console.log("No results found");
-              }
-          }, function(err) {
-              console.error(err);
-          });
-        return plans;
+        return null;
       },
-      remove: function (index, id) {
-          var query = "DELETE FROM plan WHERE id = ?";
-          $cordovaSQLite.execute(db, query, [id]).then(function() {
-              console.log("DELETED -> " + id);
+      remove: function (index, id_plan) {
+          var query = "DELETE FROM plan WHERE id_plan = ?";
+          $cordovaSQLite.execute(db, query, [id_plan]).then(function() {
+              console.log("DELETED -> " + id_plan);
               plans.splice(index, 1);
           }, function(err) {
               console.error(err);
           });
       },
-      get: function (planId) {
-        for (var i = 0; i < plans.length; i++) {
-          if (plans[i].id === parseInt(planId)) {
-            return plans[i];
-          }
-        }
-        return null;
+      get: function (id_plan) {
+          var query = "SELECT * FROM plan WHERE id_plan = ?";
+          $cordovaSQLite.execute(db, query, [id_plan]).then(function(res) {
+              if (res.rows.length > 0) {
+                  var obj = [{id_plan: res.rows.item(0).id_plan, 
+                             id_trip: res.rows.item(0).id_trip, 
+                             data: res.rows.item(0).data, 
+                             time: res.rows.item(0).time
+                           }];
+                  
+                  console.log(obj[0]);
+                  return obj[0];
+              } else {
+                  console.log("Problem get");
+              }
+          }, function(err) {
+              console.error(err);
+          });
+          
       },
-      getpid: function (planId) {
-        var tmp = [];
+      edit: function(id_plan, comment) {
+        var query = "UPDATE plan SET data = ? WHERE id_plan = ?";
+          $cordovaSQLite.execute(db, query, [comment, id_plan]).then(function() {
+              console.log("UPDATED -> " + id_plan);
+          }, function(err) {
+              console.error(err);
+          });
+      },
+      getpid: function (id_trip) {
+        plans = [];
         var query = "SELECT * FROM plan WHERE id_trip = ? ORDER BY time DESC";
-          $cordovaSQLite.execute(db, query, [planId]).then(function(res) {
+          $cordovaSQLite.execute(db, query, [id_trip]).then(function(res) {
               if (res.rows.length > 0) {
                   for (var i = 0; i < res.rows.length; i++) {
                       var obj = {id_plan: res.rows.item(i).id_plan, 
@@ -150,8 +151,6 @@
         var date = Math.floor(Date.now() / 1000);
         $cordovaSQLite.execute(db, query, [id_trip, data, date]).then(function(res) {
             console.log("INSERT ID -> " + res.insertId+ ' '+ id_trip + ' '+ data+ ' '+date);
-            var obj = {id: res.insertId, id_trip: id_trip, data: data, time: date};
-            plans.push(obj);
         }, function(err) {
             console.error(err);
         });
@@ -159,4 +158,3 @@
     };
   });
 })();
-*/

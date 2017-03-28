@@ -1,4 +1,4 @@
-<ion-view view-title="Editer - {{plan.title}}">
+<ion-view view-title="Editer">
 	<ion-content class="padding">
 		<label class="item item-input">
       		<textarea rows="10" ng-model="plan.data"></textarea>
@@ -11,10 +11,16 @@
 			  Ajouter une photo
 			</button>      
       		&nbsp;&nbsp;
-      	<label>
+      	</label>
+      	<label class="item item-input">
         	<button class="button button-block button-positive" ng-click="editPlan(plan)">
           		Enregistrer
-        	</button>
+        	</button>&nbsp;&nbsp;
+        </label>
+        <label class="item item-input">
+        	<button class="button button-block button-positive" ng-click="remove(plan.id_plan)">
+          		Supprimer
+        	</button>&nbsp;&nbsp;
       	</label>
 	</ion-content>
 </ion-view>
