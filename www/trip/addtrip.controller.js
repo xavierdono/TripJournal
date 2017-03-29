@@ -3,7 +3,7 @@
 
   angular.module('starter.addtrip', [])
 
-  .controller('AddTripCtrl', function ($scope, $state, TripService) {
+  .controller('AddTripCtrl', function ($scope, TripService) {
     // Ajoute le voyage
     $scope.addTrip = function (trip) {
       var new_trip = {
