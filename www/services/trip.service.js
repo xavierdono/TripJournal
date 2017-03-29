@@ -3,7 +3,7 @@
 
   angular.module('starter.services.trips', [])
 
-  .factory('TripService', function () {
+  .factory('TripService', function (DB) {
 
     var mois = new Array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aôut", "Septembre", "Octobre", "Novembre", "Décembre");
 
@@ -64,18 +64,17 @@
 
     return {
       all: function () {
-        return trips;
+        return DB.query('SELECT * FROM trip ORDER BY dateDebut DESC').then(function (result) {
+          return DB.fetchAll(result);
+        });
       },
       remove: function (trip) {
         trips.splice(trips.indexOf(trip), 1);
       },
       get: function (tripId) {
-        for (var i = 0; i < trips.length; i++) {
-          if (trips[i].id === parseInt(tripId)) {
-            return trips[i];
-          }
-        }
-        return null;
+        return DB.query('SELECT * FROM trip WHERE id_trip = ?', [tripId]).then(function(result){
+            return DB.fetch(result);
+        });
       },
       closeTrip: function (tripId) {
         for (var i = 0; i < trips.length; i++) {
