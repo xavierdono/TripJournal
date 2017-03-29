@@ -34,7 +34,7 @@
 
       // Création de la base
       DB.init();
-      
+
     });
   })
 
