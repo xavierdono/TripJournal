@@ -1,92 +1,14 @@
-/*(function () {
-  'use strict';
-
-  angular.module('starter.services.plans', [])
-
-  .factory('PlanService', function () {
-
-    var plans = [{
-        id: 0,
-        pid: 0,
-        title: 'Australie',
-        data: 'Visiter le temple Asakusa',
-        images: [
-          'img/trip/sf.jpg',
-          'img/trip/lasvegas.jpg'
-        ]
-      },
-      {
-        id: 1,
-        pid: 0,
-        title: 'Australie',
-        data: 'Manger Avocado Whopper',
-        images: []
-      }
-    ];
-
-    return {
-      all: function () {
-        return plans;
-      },
-      remove: function (index) {
-        plans.splice(index, 1);
-      },
-      get: function (planId) {
-        for (var i = 0; i < plans.length; i++) {
-          if (plans[i].id === parseInt(planId)) {
-            return plans[i];
-          }
-        }
-        return null;
-      },
-      getpid: function (planId) {
-        var tmp = [];
-        for (var i = 0; i < plans.length; i++) {
-          if (plans[i].pid === parseInt(planId)) {
-            tmp.push(plans[i]);
-          }
-        }
-        return tmp;
-      },
-
-      edit: function (id_plan, id_trip, comment) {
-        for (var i = 0; i < plans.length; i++) {
-          if (plans[i].id === parseInt(id_plan)) {
-              plans[i].comment = comment;
-          }
-        }
-
-      },
-      
-      add: function (id_trip, comment) {
-
-        var lastItem = plans.length;
-        var plan = {
-          id: lastItem,
-          pid: parseInt(id_trip),
-          title: 'Australie',
-          data: comment,
-          images: []
-        };
-        plans.push(plan);
-      }
-    };
-  });
-})();
-*/
 (function () {
   'use strict';
 
   angular.module('starter.services.plans', [])
 
-  .factory('PlanService', function ($cordovaSQLite) {
+  .factory('PlanService', function (DB) {
 
     var plans = [];
 
     return {
-      all: function () {
-        return null;
-      },
+      
       remove: function (id_plan) {
           var query = "DELETE FROM plan WHERE id_plan = ?";
           $cordovaSQLite.execute(db, query, [id_plan]).then(function() {
