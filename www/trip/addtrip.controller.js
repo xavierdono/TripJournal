@@ -11,10 +11,11 @@
         img: '',
         date: '',
         dateDebut: trip.dateDebut,
-        dateFin: ''
+        dateFin: '',
+        clos: 0
       };
 
-      TripService.add(new_trip);
+      TripService.addTrip(new_trip);
       window.location.href = '#/tab/trip';
     };
   });

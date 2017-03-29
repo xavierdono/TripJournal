@@ -25,15 +25,15 @@
     $scope.deleteImage = function () {
       FileService.removeImage($scope.img); // Retirer l'image de la collection "images"
       ImageService.deleteMedia($scope.img, $scope.tripId); // Supprimer l'image du répertoire
-      
+
       $scope.img = null;
       $scope.modal.hide();
     }
 
-    $scope.$on('$destroy', function() {
+    $scope.$on('$destroy', function () {
       $scope.modal.remove();
     });
-    
+
     // Fonction modal
     $scope.setDefaultImage = function (response) {
       if (response === true) {

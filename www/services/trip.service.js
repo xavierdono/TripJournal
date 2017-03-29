@@ -7,40 +7,6 @@
 
     var mois = new Array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aôut", "Septembre", "Octobre", "Novembre", "Décembre");
 
-    var trips = [{
-        id: 0,
-        img: 'img/trip/titre.jpg',
-        title: 'Australie',
-        date: 'Février 2017, 7 jours',
-        dateDebut: new Date('01/10/2017'),
-        dateFin: new Date('01/18/2017'),
-        clos: 0,
-        days: [{
-            id: 0,
-            title: 'Jour 1',
-            dateShow: '10/01/2017',
-            date: new Date('01/10/2017'),
-            comment: 'Bla bla',
-            images: []
-          }, {
-            id: 1,
-            title: 'Jour 2',
-            dateShow: '11/01/2017',
-            date: new Date('01/11/2017'),
-            comment: 'blo blo',
-            images: []
-          }, {
-            id: 2,
-            title: 'Jour 3',
-            dateShow: '12/01/2017',
-            date: new Date('01/12/2017'),
-            comment: 'Blu blu',
-            images: []
-          }
-        ]
-      }
-    ];
-
     function diffdate(d1, d2, u) {
       var div = 1;
       switch (u) {
@@ -64,76 +30,46 @@
 
     return {
       all: function () {
-        return DB.query('SELECT * FROM trip ORDER BY dateDebut DESC').then(function (result) {
+        return DB.query('SELECT * FROM trip WHERE clos = 0 ORDER BY dateDebut DESC').then(function (result) {
           return DB.fetchAll(result);
         });
       },
-      remove: function (trip) {
-        trips.splice(trips.indexOf(trip), 1);
-      },
-      get: function (tripId) {
-        return DB.query('SELECT * FROM trip WHERE id_trip = ?', [tripId]).then(function(result){
-            return DB.fetch(result);
+      getTrip: function (tripId) {
+        return DB.query('SELECT * FROM trip WHERE id_trip = ?', [tripId]).then(function (result) {
+          return DB.fetch(result);
         });
       },
+      getDays: function (tripId) {
+        return DB.query('SELECT * FROM day WHERE id_trip = ? ORDER BY date DESC', [tripId]).then(function (result) {
+          return DB.fetchAll(result);
+        });
+      },
+      addTrip: function (trip) {
+        trip.date = mois[trip.dateDebut.getMonth() + 1] + ' ' + trip.dateDebut.getFullYear() + ', début du voyage';
+
+        DB.query("INSERT INTO trip (default_image, title, date, dateDebut, dateFin, clos) VALUES (?, ?, ?, ?, ?, ?)", ['img/trip/trip.jpg', trip.title, trip.date, trip.dateDebut, trip.dateFin, trip.clos]);
+      },
+      removeTrip: function (tripId) {
+        DB.query("DELETE FROM trip WHERE id_trip = ?", [tripId]);
+      },
       closeTrip: function (tripId) {
-        for (var i = 0; i < trips.length; i++) {
-          if (trips[i].id === parseInt(tripId)) {
-            trips[i].clos = 1;
-          }
-        }
-        return null;
+        DB.query("UPDATE trip SET clos = 1 WHERE id_trip = ?", [tripId]);
       },
       getDay: function (tripId, dayId) {
-        for (var i = 0; i < trips.length; i++) {
-          if (trips[i].id === parseInt(tripId)) {
-            for (var j = 0; j < trips[i].days.length; j++) {
-              if (trips[i].days[j].id === parseInt(dayId)) {
-                return trips[i].days[j];
-              }
-            }
-          }
-        }
-        return null;
+        return DB.query('SELECT * FROM day WHERE id_trip = ? AND id_day = ?', [tripId, dayId]).then(function (result) {
+          return DB.fetch(result);
+        });
       },
-      add: function (trip) {
-        trip.id = trips.length;
-        trip.date = mois[trip.dateDebut.getMonth() + 1] + ' ' + trip.dateDebut.getFullYear() + ', début du voyage';
-        trip.img = 'img/trip/trip.jpg';
-        trip.days = [];
-        trips.push(trip);
+      addDay: function (tripId, day) {
+        //trips[i].date = trips[i].date.split(',')[0] + ', ' + diffdate(trips[i].dateDebut, trips[i].dateFin, 'd') + ' jours';
+        DB.query("UPDATE trip SET dateFin = ? WHERE id_trip = ?", [day.date, tripId]);
+        DB.query("INSERT INTO day (id_trip, title, date, dateShow, comment) VALUES (?, ?, ?, ?, ?)", [tripId, day.title, day.date, day.dateShow, day.comment]);
       },
-      addDay: function (tripID, day) {
-        for (var i = 0; i < trips.length; i++) {
-          if (trips[i].id === parseInt(tripID)) {
-            day.id = trips[i].days.length;
-            trips[i].dateFin = day.date;
-            trips[i].date = trips[i].date.split(',')[0] + ', ' + diffdate(trips[i].dateDebut, trips[i].dateFin, 'd') + ' jours';
-            trips[i].days.push(day);
-          }
-        }
+      editDay: function (tripId, day) {
+        DB.query("UPDATE day SET title = ?, dateShow = ?, date = ?, comment = ? WHERE id_trip = ? AND id_day", [day.title, day.dateShow, day.date, day.comment, tripId, day.id]);
       },
-      editDay: function (tripID, day) {
-        for (var i = 0; i < trips.length; i++) {
-          if (trips[i].id === parseInt(tripID)) {
-            for (var j = 0; j < trips[i].days.length; j++) {
-              if (trips[i].days[j].id === parseInt(day.id)) {
-                trips[i].days[j].title = day.title;
-                trips[i].days[j].dateShow = day.dateShow;
-                trips[i].days[j].date = day.date;
-                trips[i].days[j].comment = day.comment;
-              }
-            }
-          }
-        }
-        return null;
-      },
-      setDefaultImage: function (tripID, imageURL) {
-        for (var i = 0; i < trips.length; i++) {
-          if (trips[i].id === parseInt(tripID)) {
-            trips[i].img = imageURL;
-          }
-        }
+      setDefaultImage: function (tripId, imageURL) {
+        DB.query("UPDATE trip SET default_image = ? WHERE id_trip = ?", [imageURL, tripId]);
       }
     };
   });

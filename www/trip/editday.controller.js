@@ -4,13 +4,21 @@
   angular.module('starter.editday', [])
 
   .controller('EditDayCtrl', function ($scope, $stateParams, FileService, ImageService, TripService, $ionicActionSheet, $ionicModal) {
+    $scope.trip = {};
+    $scope.day = {};
+
     $scope.tripId = $stateParams.tripId;
     $scope.dayId = $stateParams.dayId;
 
     $scope.images = FileService.images();
 
-    $scope.trip = TripService.get($scope.tripId);
-    $scope.day = TripService.getDay($scope.tripId, $scope.dayId);
+    TripService.getTrip($scope.tripId).then(function (trip) {
+      $scope.trip = trip;
+    });
+
+    TripService.getDay($scope.tripId, $scope.dayId).then(function (day) {
+      $scope.day = day;
+    });
 
     // Charge la modal
     $ionicModal.fromTemplateUrl('templates/image.html', {
@@ -30,11 +38,11 @@
     $scope.deleteImage = function () {
       FileService.removeImage($scope.img); // Retirer l'image de la collection "images"
       ImageService.deleteMedia($scope.img, $scope.tripId); // Supprimer l'image du répertoire
-      
+
       $scope.img = null;
       $scope.modal.hide();
     }
-    
+
     // Fonction modal
     $scope.setDefaultImage = function (response) {
       if (response === true) {
@@ -51,7 +59,7 @@
         id: $scope.dayId,
         title: day.title,
         date: day.date,
-        dateShow: day.date.getDate() + '/' + (((day.date.getMonth() + 1) < 10 ? '0' : '') + (day.date.getMonth() + 1))  + '/' + day.date.getFullYear(),
+        dateShow: day.date.getDate() + '/' + (((day.date.getMonth() + 1) < 10 ? '0' : '') + (day.date.getMonth() + 1)) + '/' + day.date.getFullYear(),
         comment: day.comment,
         images: $scope.images
       };
