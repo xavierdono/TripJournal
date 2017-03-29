@@ -8,7 +8,7 @@
     self.db = null;
 
     self.init = function () {
-      // Use self.db = window.sqlitePlugin.openDatabase({name: DB_CONFIG.name}); in production
+      //self.db = window.sqlitePlugin.openDatabase({ name: "tripjournal.db", location: 'default' });
       self.db = window.openDatabase("tripjournal.db", "1.0", "TripJournal", 0);
 
       // Plan
