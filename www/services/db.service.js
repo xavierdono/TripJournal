@@ -30,7 +30,7 @@
 
       // Images
       self.query("DROP TABLE IF EXISTS image");
-      self.query("CREATE TABLE IF NOT EXISTS image (id_image integer primary key, id_day integer, url text)");
+      self.query("CREATE TABLE IF NOT EXISTS image (id_image integer primary key, id_day integer, name text)");
 
       // Images Plan
       self.query("DROP TABLE IF EXISTS image_plan");

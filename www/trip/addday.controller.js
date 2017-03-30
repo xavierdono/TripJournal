@@ -5,7 +5,10 @@
 
   .controller('AddDayCtrl', function ($scope, $stateParams, $ionicActionSheet, ImageService, FileService, TripService, $ionicModal, $ionicPopup) {
     $scope.tripId = $stateParams.tripId;
-    $scope.images = FileService.images();
+
+    TripService.getImages($scope.tripId).then(function (images) {
+      $scope.images = images;
+    });
 
     // Charge la modal
     $ionicModal.fromTemplateUrl('templates/image.html', {
@@ -67,11 +70,12 @@
         title: day.title,
         date: day.date,
         dateShow: day.date.getDate() + '/' + (((day.date.getMonth() + 1) < 10 ? '0' : '') + (day.date.getMonth() + 1)) + '/' + day.date.getFullYear(),
-        comment: day.comment,
-        images: $scope.images
+        comment: day.comment
       };
 
       TripService.addDay($scope.tripId, new_day);
+      TripService.addImages($scope.tripId, FileService.getImages());
+      FileService.clearImages();
       window.location.href = '#/tab/trip.show/' + $scope.tripId;
     }
 

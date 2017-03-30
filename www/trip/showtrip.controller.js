@@ -3,7 +3,7 @@
 
   angular.module('starter.showtrip', [])
 
-  .controller('ShowTripCtrl', function ($rootScope, $scope, $stateParams, TripService) {
+  .controller('ShowTripCtrl', function ($scope, $stateParams, TripService) {
     $scope.trip = {};
     $scope.trip.days = [];
 
@@ -14,6 +14,5 @@
         $scope.trip.days = days;
       });
     });
-
   });
 })();

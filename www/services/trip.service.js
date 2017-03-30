@@ -65,6 +65,16 @@
         DB.query("UPDATE trip SET dateFin = ? WHERE id_trip = ?", [day.date, tripId]);
         DB.query("INSERT INTO day (id_trip, title, date, dateShow, comment) VALUES (?, ?, ?, ?, ?)", [tripId, day.title, day.date, day.dateShow, day.comment]);
       },
+      getImages: function (tripId) {
+        return DB.query('SELECT * FROM image WHERE id_trip = ?', [tripId]).then(function (result) {
+          return DB.fetchAll(result);
+        });
+      },
+      addImages: function (tripId, images) {
+        for (var i = 0; i < images.length; i++) {
+          DB.query("INSERT INTO image (id_trip, url) VALUES (?, ?)", [tripId, images[i]]);
+        }
+      },
       editDay: function (tripId, day) {
         DB.query("UPDATE day SET title = ?, dateShow = ?, date = ?, comment = ? WHERE id_trip = ? AND id_day", [day.title, day.dateShow, day.date, day.comment, tripId, day.id]);
       },
