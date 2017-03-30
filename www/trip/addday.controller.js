@@ -4,11 +4,8 @@
   angular.module('starter.addday', [])
 
   .controller('AddDayCtrl', function ($scope, $stateParams, $ionicActionSheet, ImageService, FileService, TripService, $ionicModal, $ionicPopup) {
+    $scope.images = FileService.getImages();
     $scope.tripId = $stateParams.tripId;
-
-    TripService.getImages($scope.tripId).then(function (images) {
-      $scope.images = images;
-    });
 
     // Charge la modal
     $ionicModal.fromTemplateUrl('templates/image.html', {
@@ -73,8 +70,7 @@
         comment: day.comment
       };
 
-      TripService.addDay($scope.tripId, new_day);
-      TripService.addImages($scope.tripId, FileService.getImages());
+      TripService.addDay($scope.tripId, new_day, FileService.getImages());
       FileService.clearImages();
       window.location.href = '#/tab/trip.show/' + $scope.tripId;
     }

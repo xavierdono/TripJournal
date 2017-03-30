@@ -17,11 +17,17 @@
     function addImage(img) {
       images.push(img);
     }
+    
+    function removeImage(img) {
+      var removed_image = img.substr(img.lastIndexOf('/') + 1);
+      images.splice(images.indexOf(removed_image), 1);
+    }    
 
     return {
       getImages: getImages,
       addImage: addImage,
-      clearImages: clearImages
+      clearImages: clearImages,
+      removeImage: removeImage
     };
   });
 })();

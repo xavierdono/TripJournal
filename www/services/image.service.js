@@ -38,7 +38,7 @@
 
     function deleteMedia(file, tripId) {
       var deleted_file = file.substr(file.lastIndexOf('/') + 1);
-      $cordovaFile.removeFile(cordova.file.dataDirectory + '/' + tripId, deleted_file);
+      $cordovaFile.removeFile(cordova.file.dataDirectory + tripId, deleted_file);
     }
 
     function saveMedia(type, tripId) {
@@ -63,7 +63,7 @@
             $cordovaFile.createDir(cordova.file.dataDirectory, tripId, false);
           });
 
-          $cordovaFile.copyFile(namePath, name, cordova.file.dataDirectory + '/' + tripId, newName)
+          $cordovaFile.copyFile(namePath, name, cordova.file.dataDirectory + tripId, newName)
           .then(function (info) {
             FileService.addImage(newName);
             resolve();

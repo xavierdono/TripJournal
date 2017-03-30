@@ -8,12 +8,12 @@
     self.db = null;
 
     self.init = function () {
-     /*
+      /*
       self.db = window.sqlitePlugin.openDatabase({
-          name: "tripjournal.db",
-          location: 'default'
-        });
-      */
+      name: "tripjournal.db",
+      location: 'default'
+      });
+       */
       self.db = window.openDatabase("tripjournal.db", "1.0", "TripJournal", 0);
 
       // Plan
@@ -30,7 +30,7 @@
 
       // Images
       self.query("DROP TABLE IF EXISTS image");
-      self.query("CREATE TABLE IF NOT EXISTS image (id_image integer primary key, id_day integer, name text)");
+      self.query("CREATE TABLE IF NOT EXISTS image (id_image integer primary key, id_trip integer, id_day integer, name text)");
 
       // Images Plan
       self.query("DROP TABLE IF EXISTS image_plan");

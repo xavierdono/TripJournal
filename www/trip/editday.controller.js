@@ -6,11 +6,14 @@
   .controller('EditDayCtrl', function ($scope, $stateParams, FileService, ImageService, TripService, $ionicActionSheet, $ionicModal) {
     $scope.trip = {};
     $scope.day = {};
+    $scope.images = {};
 
     $scope.tripId = $stateParams.tripId;
     $scope.dayId = $stateParams.dayId;
 
-    $scope.images = FileService.images();
+    TripService.getImages($scope.tripId).then(function (images) {
+      $scope.images = images;
+    });
 
     TripService.getTrip($scope.tripId).then(function (trip) {
       $scope.trip = trip;
@@ -60,17 +63,17 @@
         title: day.title,
         date: day.date,
         dateShow: day.date.getDate() + '/' + (((day.date.getMonth() + 1) < 10 ? '0' : '') + (day.date.getMonth() + 1)) + '/' + day.date.getFullYear(),
-        comment: day.comment,
-        images: $scope.images
+        comment: day.comment
       };
 
+      // TODO : Ajout des images manquantes
       TripService.editDay($scope.tripId, edited_day);
       window.location.href = '#/tab/trip.show/' + $scope.tripId;
     }
 
     $scope.urlForImage = function (imageName) {
       // Charger les images par voyage ($scope.tripId)
-      var trueOrigin = cordova.file.dataDirectory + '/' + $scope.tripId + '/' + imageName;
+      var trueOrigin = cordova.file.dataDirectory + $scope.tripId + '/' + imageName;
       return trueOrigin;
     }
 

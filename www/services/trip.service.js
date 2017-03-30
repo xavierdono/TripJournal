@@ -60,20 +60,21 @@
           return DB.fetch(result);
         });
       },
-      addDay: function (tripId, day) {
+      addDay: function (tripId, day, images) {
         //trips[i].date = trips[i].date.split(',')[0] + ', ' + diffdate(trips[i].dateDebut, trips[i].dateFin, 'd') + ' jours';
         DB.query("UPDATE trip SET dateFin = ? WHERE id_trip = ?", [day.date, tripId]);
-        DB.query("INSERT INTO day (id_trip, title, date, dateShow, comment) VALUES (?, ?, ?, ?, ?)", [tripId, day.title, day.date, day.dateShow, day.comment]);
+        DB.query("INSERT INTO day (id_trip, title, date, dateShow, comment) VALUES (?, ?, ?, ?, ?)", [tripId, day.title, day.date, day.dateShow, day.comment]).then(function (result) {
+            var id_day = result.insertId;
+                        
+            for (var i = 0; i < images.length; i++) {
+              DB.query("INSERT INTO image (id_trip, id_day, name) VALUES (?, ?, ?)", [tripId, id_day, images[i]]);
+            }
+          });
       },
       getImages: function (tripId) {
         return DB.query('SELECT * FROM image WHERE id_trip = ?', [tripId]).then(function (result) {
           return DB.fetchAll(result);
         });
-      },
-      addImages: function (tripId, images) {
-        for (var i = 0; i < images.length; i++) {
-          DB.query("INSERT INTO image (id_trip, url) VALUES (?, ?)", [tripId, images[i]]);
-        }
       },
       editDay: function (tripId, day) {
         DB.query("UPDATE day SET title = ?, dateShow = ?, date = ?, comment = ? WHERE id_trip = ? AND id_day", [day.title, day.dateShow, day.date, day.comment, tripId, day.id]);
