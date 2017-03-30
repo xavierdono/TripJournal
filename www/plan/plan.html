@@ -1,7 +1,7 @@
-<ion-view view-title="Plan">
+<ion-view view-title="Plan" cache-view="false">
 
 		<ion-list>
-      		<ion-item ng-repeat="item in trips" href="#/tab/plan.show/{{ item.id }}">
+      		<ion-item ng-repeat="item in trips" href="#/tab/plan.show/{{ item.id_trip }}">
 		        <div class="card">
 		            <div class="item item-calm">
 		              {{item.title}} - {{item.date}}

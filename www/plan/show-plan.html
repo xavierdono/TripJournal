@@ -1,7 +1,7 @@
 <ion-view view-title="{{ trip.title }}" cache-view="false">
 	<ion-content>
 		<ion-list>
-	  		<ion-item ng-repeat="item in plans" href="#/tab/plan.edit/{{ trip.id }}/{{ item.id_plan }}">
+	  		<ion-item ng-repeat="item in plans" href="#/tab/plan.edit/{{ trip.id_trip }}/{{ item.id_plan }}">
 	  			<div class="list card">
 					<div class="item item-image">
 				    	{{item.data}}<br><br>
@@ -19,7 +19,7 @@
 
 	<div class="float-button" style="background-color: #11c1f3;">
 		<span class="height-fix">
-	   		<a class="content" href="#/tab/plan.add/{{trip.id}}">
+	   		<a class="content" href="#/tab/plan.add/{{trip.id_trip}}">
 	    		<i class="ion-android-add"> </i>
 	   		</a>
 	  	</span>
