@@ -1,4 +1,5 @@
-<ion-view view-title="{{ trip.title }}" cache-view="false">
+<ion-view>
+	<ion-nav-title>{{trip.title}}</ion-nav-title>
 	<ion-content>
 		<ion-list>
 	  		<ion-item ng-repeat="item in plans" href="#/tab/plan.edit/{{ trip.id_trip }}/{{ item.id_plan }}">

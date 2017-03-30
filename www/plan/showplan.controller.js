@@ -14,6 +14,7 @@
     });
 
   	TripService.getTrip($stateParams.tripId).then(function (trip) {
+      console.log(trip);
       $scope.trip = trip;
     });
 

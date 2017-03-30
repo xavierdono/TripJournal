@@ -40,6 +40,7 @@
   .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     $ionicConfigProvider.tabs.position('bottom');
+    $ionicConfigProvider.views.maxCache(0);
 
     $stateProvider
 

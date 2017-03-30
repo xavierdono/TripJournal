@@ -15,12 +15,5 @@
       });
     });
 
-    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams, options) {
-      if (toState.name === 'tab.trip-show') {
-        TripService.getDays($stateParams.tripId).then(function (days) {
-          $scope.trip.days = days;
-        });
-      }
-    });
   });
 })();

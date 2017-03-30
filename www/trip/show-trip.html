@@ -1,4 +1,5 @@
-<ion-view view-title="{{ trip.title }}">
+<ion-view>
+  <ion-nav-title>{{trip.title}}</ion-nav-title>
   <ion-content class="padding">
     <ion-list no-lines>
       <ion-item ng-repeat="day in trip.days" href="#/tab/day.edit/{{ trip.id_trip }}/{{ day.id_day }}">
