@@ -71,8 +71,15 @@
             }
           });
       },
-      getImages: function (tripId) {
-        return DB.query('SELECT * FROM image WHERE id_trip = ?', [tripId]).then(function (result) {
+      addImage: function(tripId, dayId, name_image) {
+        DB.query("INSERT INTO image (id_trip, id_day, name) VALUES (?, ?, ?)", [tripId, dayId, name_image]);
+      },
+      removeImage: function(tripId, dayId, img) {
+        var removed_image = img.substr(img.lastIndexOf('/') + 1);
+        DB.query("DELETE FROM image WHERE id_trip = ? AND id_day = ? AND name = ?", [tripId, dayId, removed_image]);
+      },
+      getImages: function (tripId, dayId) {
+        return DB.query('SELECT * FROM image WHERE id_trip = ? AND id_day = ?', [tripId, dayId]).then(function (result) {
           return DB.fetchAll(result);
         });
       },

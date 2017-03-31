@@ -8,13 +8,14 @@
     self.db = null;
 
     self.init = function () {
-      /*
-      self.db = window.sqlitePlugin.openDatabase({
-      name: "tripjournal.db",
-      location: 'default'
-      });
-       */
-      self.db = window.openDatabase("tripjournal.db", "1.0", "TripJournal", 0);
+      if (window.cordova) { // Android
+        self.db = window.sqlitePlugin.openDatabase({
+            name: "tripjournal.db",
+            location: 'default'
+          });
+      } else { // Browser
+        self.db = window.openDatabase("tripjournal.db", "1.0", "TripJournal", 0);
+      }
 
       // Plan
       self.query("DROP TABLE IF EXISTS plan");

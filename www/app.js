@@ -21,7 +21,7 @@
       'starter.services.image',
       'ngCordova'])
 
-  .run(function ($ionicPlatform, $cordovaSQLite, DB) {
+  .run(function ($ionicPlatform, $cordovaSQLite, $cordovaFile, DB) {
     $ionicPlatform.ready(function () {
 
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -39,15 +39,17 @@
       DB.init();
 
       // Création des répertoires
-      $cordovaFile.checkDir(cordova.file.dataDirectory, PATH.plan)
-      .catch (function (success) {
-        $cordovaFile.createDir(cordova.file.dataDirectory, PATH.plan, false);
-      });
+      if (window.cordova) { // Android
+        $cordovaFile.checkDir(cordova.file.dataDirectory, PATH.plan)
+        .catch (function (success) {
+          $cordovaFile.createDir(cordova.file.dataDirectory, PATH.plan, false);
+        });
 
-      $cordovaFile.checkDir(cordova.file.dataDirectory, PATH.trip)
-      .catch (function (success) {
-        $cordovaFile.createDir(cordova.file.dataDirectory, PATH.trip, false);
-      });      
+        $cordovaFile.checkDir(cordova.file.dataDirectory, PATH.trip)
+        .catch (function (success) {
+          $cordovaFile.createDir(cordova.file.dataDirectory, PATH.trip, false);
+        });
+      }
     });
   })
 

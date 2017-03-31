@@ -11,7 +11,7 @@
     $scope.tripId = $stateParams.tripId;
     $scope.dayId = $stateParams.dayId;
 
-    TripService.getImages($scope.tripId).then(function (images) {
+    TripService.getImages($scope.tripId, $scope.dayId).then(function (images) {
       $scope.images = images;
     });
 
@@ -39,7 +39,7 @@
 
     // Fonction modal
     $scope.deleteImage = function () {
-      FileService.removeImage($scope.img); // Retirer l'image de la collection "images"
+      TripService.removeImage($scope.img, $scope.tripId, $scope.img); // Retirer l'image de la collection "images"
       ImageService.deleteMedia($scope.img, $scope.tripId); // Supprimer l'image du répertoire
 
       $scope.img = null;
@@ -67,7 +67,7 @@
       };
 
       // TODO : Ajout des images manquantes
-      TripService.editDay($scope.tripId, edited_day);
+      TripService.editDay($scope.tripId, edited_day);      
       window.location.href = '#/tab/trip.show/' + $scope.tripId;
     }
 
@@ -96,7 +96,7 @@
     $scope.addImage = function (type) {
       $scope.hideSheet();
       // Sauvegarder les images par voyage ($scope.tripId)
-      ImageService.handleMediaDialog(type, $scope.tripId);
+      ImageService.handleMediaDialog(type, $scope.tripId, $scope.dayId);
     }
 
   });

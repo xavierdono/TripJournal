@@ -41,7 +41,7 @@
       $cordovaFile.removeFile(cordova.file.dataDirectory + tripId, deleted_file);
     }
 
-    function saveMedia(type, tripId) {
+    function saveMedia(type, tripId, dayId) {
       return $q(function (resolve, reject) {
         var options = optionsForType(type);
 
@@ -65,7 +65,12 @@
 
           $cordovaFile.copyFile(namePath, name, cordova.file.dataDirectory + tripId, newName)
           .then(function (info) {
-            FileService.addImage(newName);
+            
+            if(dayId !== 'undefined') {
+              TripService.addImage(tripId, dayId, newName);
+            } else {
+              FileService.addImage(newName);
+            }
             resolve();
           }, function (e) {
             reject();
