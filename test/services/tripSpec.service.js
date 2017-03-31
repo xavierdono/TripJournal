@@ -1,14 +1,17 @@
 describe('TripService', function () {
 
   var TripService,
-  DB;
+  DB,
+  ionicPlatform;
 
   beforeEach(function () {
     angular.mock.module('starter.services.trips');
     angular.mock.module('starter.services.db');
-    angular.mock.inject(function (_TripService_, _DB_) {
+    angular.mock.module('ionic');
+    angular.mock.inject(function (_TripService_, _DB_, $ionicPlatform) {
       TripService = _TripService_;
       DB = _DB_;
+      ionicPlatform = $ionicPlatform;
     });
 
     DB.init();
