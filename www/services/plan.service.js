@@ -14,16 +14,26 @@
         });
       },
       edit: function(id_plan, comment) {
-        DB.query("UPDATE plan SET data = ? WHERE id_plan = ?", [comment, id_plan]);
+        DB.query("UPDATE plan SET comment = ? WHERE id_plan = ?", [comment, id_plan]);
       },
-      getpid: function (id_trip) {
-        return DB.query('SELECT * FROM plan WHERE id_trip = ? ORDER BY time DESC', [id_trip]).then(function (result) {
+      getpid: function (id_trip, id_category) {
+        return DB.query('SELECT * FROM plan WHERE id_trip = ? AND id_category = ? ORDER BY time DESC', [id_trip, id_category]).then(function (result) {
           return DB.fetchAll(result);
         });
       },
-      add: function (id_trip, data) {
+      add: function (id_trip, id_category, comment) {
         var date = Math.floor(Date.now() / 1000);
-        DB.query("INSERT INTO plan (id_trip, data, time) VALUES (?,?,?)", [id_trip, data, date]);
+        DB.query("INSERT INTO plan (id_trip, id_category, comment, time) VALUES (?,?,?,?)", [id_trip, id_category, comment, date]).then(function (result) {
+            var id_plan = result.insertId;
+            /*for (var i = 0; i < images.length; i++) {
+              DB.query("INSERT INTO image_plan (id_plan, name) VALUES (?, ?, ?)", [id_plan, images[i]]);
+            }*/
+          });
+      },
+      getImages: function (id_plan) {
+        return DB.query('SELECT * FROM image_plan WHERE id_plan = ?', [id_plan]).then(function (result) {
+          return DB.fetchAll(result);
+        });
       }
     };
   });

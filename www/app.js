@@ -6,12 +6,14 @@
       'starter.addplan',
       'starter.editplan',
       'starter.showplan',
+      'starter.showcategory',
       'starter.trip',
       'starter.addtrip',
       'starter.showtrip',
       'starter.addday',
       'starter.editday',
       'starter.services.db',
+      'starter.services.categories',
       'starter.services.plans',
       'starter.services.trips',
       'starter.services.file',
@@ -61,7 +63,7 @@
     })
 
     .state('tab.plan-add', {
-      url: '/plan.add/:tripId',
+      url: '/plan.add/:tripId/:CategoryId',
       views: {
         'tab-plan': {
           templateUrl: 'plan/add-plan.html',
@@ -71,7 +73,7 @@
     })
 
     .state('tab.plan-edit', {
-      url: '/plan.edit/:tripId/:planId',
+      url: '/plan.edit/:tripId/:planId/:CategoryId',
       views: {
         'tab-plan': {
           templateUrl: 'plan/edit-plan.html',
@@ -81,11 +83,21 @@
     })
 
     .state('tab.plan-show', {
-      url: '/plan.show/:tripId',
+      url: '/plan.show/:tripId/:CategoryId',
       views: {
         'tab-plan': {
           templateUrl: 'plan/show-plan.html',
           controller: 'ShowPlanCtrl'
+        }
+      }
+    })
+
+    .state('tab.category-show', {
+      url: '/category.show/:tripId',
+      views: {
+        'tab-plan': {
+          templateUrl: 'plan/show-category.html',
+          controller: 'ShowCategoryCtrl'
         }
       }
     })

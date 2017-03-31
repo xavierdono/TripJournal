@@ -3,20 +3,17 @@
 
   angular.module('starter.showplan', [])
 
-  .controller('ShowPlanCtrl', function ($scope, $stateParams, PlanService, TripService) {
+  .controller('ShowPlanCtrl', function ($scope, $stateParams, CategoryService, PlanService, TripService) {
+    $scope.category = CategoryService.get($stateParams.CategoryId);
   	$scope.trip = {};
   	$scope.plans = [];
 
-  	$scope.plans = PlanService.getpid($stateParams.tripId);
-
-  	PlanService.getpid($stateParams.tripId).then(function (plans) {
+  	PlanService.getpid($stateParams.tripId, $stateParams.CategoryId).then(function (plans) {
       $scope.plans = plans;
     });
 
   	TripService.getTrip($stateParams.tripId).then(function (trip) {
-      console.log(trip);
       $scope.trip = trip;
     });
-
   });
 })();

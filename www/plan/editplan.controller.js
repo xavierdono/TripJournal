@@ -11,13 +11,13 @@
       });
 
   		$scope.editPlan = function (plan) {
-        	PlanService.edit($stateParams.planId, plan.data);
-      		window.location.href = '#/tab/plan.show/'+$stateParams.tripId;
+        	PlanService.edit($stateParams.planId, plan.comment);
+      		window.location.href = '#/tab/plan.show/'+$stateParams.tripId+'/'+$stateParams.CategoryId;
     	}
 
     	$scope.remove = function() {
       		PlanService.remove($stateParams.planId);
-      		window.location.href = '#/tab/plan.show/'+$stateParams.tripId;
+      		window.location.href = '#/tab/plan.show/'+$stateParams.tripId+'/'+$stateParams.CategoryId;
     	}
   });
 })();

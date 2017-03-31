@@ -1,15 +1,15 @@
 <ion-view>
-	<ion-nav-title>{{trip.title}}</ion-nav-title>
+	<ion-nav-title>{{trip.title}} - {{category.title}}</ion-nav-title>
 	<ion-content>
 		<ion-list>
-	  		<ion-item ng-repeat="item in plans" href="#/tab/plan.edit/{{ trip.id_trip }}/{{ item.id_plan }}">
+	  		<ion-item ng-repeat="item in plans" href="#/tab/plan.edit/{{ trip.id_trip }}/{{ item.id_plan }}/{{category.id_category}}">
 	  			<div class="list card">
 					<div class="item item-image">
-				    	{{item.data}}<br><br>
+				    	{{item.comment}}<br><br>
 					<!--<p ng-bind-html="item.data.replace(/\n/g, '<br/>')"></p><br>-->
-				    	<ion-item ng-repeat="image in item.images">
+				    	<!--<ion-item ng-repeat="image in item.images">
 				    		<img ng-src="{{image}}">
-				    	</ion-item>
+				    	</ion-item>-->
 				  	</div>
 				</div>
 				<!--<ion-option-button class="button-assertive" ng-click="remove($index, {{item.id_plan}})">Supprimer</ion-option-button>
@@ -20,7 +20,7 @@
 
 	<div class="float-button" style="background-color: #11c1f3;">
 		<span class="height-fix">
-	   		<a class="content" href="#/tab/plan.add/{{trip.id_trip}}">
+	   		<a class="content" href="#/tab/plan.add/{{trip.id_trip}}/{{category.id_category}}">
 	    		<i class="ion-android-add"> </i>
 	   		</a>
 	  	</span>

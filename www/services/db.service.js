@@ -18,7 +18,7 @@
 
       // Plan
       self.query("DROP TABLE IF EXISTS plan");
-      self.query("CREATE TABLE IF NOT EXISTS plan (id_plan integer primary key, id_trip integer, data text, time text)");
+      self.query("CREATE TABLE IF NOT EXISTS plan (id_plan integer primary key, id_trip integer, id_category integer, comment text, time text)");
 
       // Voyage
       self.query("DROP TABLE IF EXISTS trip");
@@ -34,7 +34,7 @@
 
       // Images Plan
       self.query("DROP TABLE IF EXISTS image_plan");
-      self.query("CREATE TABLE IF NOT EXISTS image_plan (id_image integer primary key, id_plan integer, url text)");
+      self.query("CREATE TABLE IF NOT EXISTS image_plan (id_image integer primary key, id_plan integer, name text)");
 
       // Ajoute un voyage
       self.query("INSERT INTO trip (default_image, title, date, dateDebut, dateFin, clos) VALUES (?, ?, ?, ?, ?, ?)", ['img/trip/titre.jpg', 'Australie', 'Février 2017, 7 jours', new Date('01/10/2017'), '', 0]).then(function (result) {
