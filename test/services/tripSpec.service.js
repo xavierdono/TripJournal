@@ -26,6 +26,9 @@ describe('TripService', function () {
     expect(TripService.closeTrip).to.be.a('function');
     expect(TripService.getDay).to.be.a('function');
     expect(TripService.addDay).to.be.a('function');
+    expect(TripService.addImage).to.be.a('function');
+    expect(TripService.removeImage).to.be.a('function');
+    expect(TripService.getImages).to.be.a('function');
     expect(TripService.editDay).to.be.a('function');
     expect(TripService.setDefaultImage).to.be.a('function');
   })
@@ -59,6 +62,29 @@ describe('TripService', function () {
   it("La journée du 1er voyage doit être 'Jour 2'", function () {
     TripService.getDay(1, 2).then(function (day) {
       expect(day.title).to.equal('Jour 2');
+    });
+  })
+
+  it("Ajoute une image au voyage 1 de la journée 2", function () {
+    var image = 'image.png';
+    TripService.addImage(1, 2, image);
+
+    TripService.getImages(1, 2).then(function (images) {
+      expect(images[0].name).to.equal(image);
+    });
+  })
+
+  it("Supprime l'image au voyage 1 de la journée 2", function () {
+    var image = 'image.png';
+    TripService.addImage(1, 2, image);
+
+    TripService.getImages(1, 2).then(function (images) {
+      expect(images[0].name).to.equal(image);
+    });
+
+    TripService.removeImage(1, 2, image);
+    TripService.getImages(1, 2).then(function (images) {
+      expect(images).to.have.lengthOf(0);
     });
   })
 
