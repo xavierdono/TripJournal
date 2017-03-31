@@ -2,6 +2,7 @@
   'use strict';
 
   angular.module('starter', ['ionic',
+      'starter.config',
       'starter.plan',
       'starter.addplan',
       'starter.editplan',
@@ -36,6 +37,17 @@
 
       // Création de la base
       DB.init();
+
+      // Création des répertoires
+      $cordovaFile.checkDir(cordova.file.dataDirectory, PATH.plan)
+      .catch (function (success) {
+        $cordovaFile.createDir(cordova.file.dataDirectory, PATH.plan, false);
+      });
+
+      $cordovaFile.checkDir(cordova.file.dataDirectory, PATH.trip)
+      .catch (function (success) {
+        $cordovaFile.createDir(cordova.file.dataDirectory, PATH.trip, false);
+      });      
     });
   })
 
