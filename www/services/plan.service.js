@@ -30,6 +30,13 @@
             }*/
           });
       },
+      addImage: function(id_plan, name_image) {
+        DB.query("INSERT INTO image_plan (id_plan, name) VALUES (?, ?)", [id_plan, name_image]);
+      },
+      removeImage: function(id_plan, img) {
+        var removed_image = img.substr(img.lastIndexOf('/') + 1);
+        DB.query("DELETE FROM image_plan WHERE id_plan = ? AND name = ?", [id_plan, removed_image]);
+      },
       getImages: function (id_plan) {
         return DB.query('SELECT * FROM image_plan WHERE id_plan = ?', [id_plan]).then(function (result) {
           return DB.fetchAll(result);

@@ -7,11 +7,11 @@
 
     var categories = [{
                           id_category: 0,
-                          title: 'Hôtel'
+                          title: 'Hôtels'
                         },
                         {
                           id_category: 1,
-                          title: 'Restaurant'
+                          title: 'Restaurants'
                         },
                         {
                           id_category: 2,
@@ -19,7 +19,7 @@
                         },
                         {
                           id_category: 3,
-                          title: 'Sorties'
+                          title: 'Transports'
                         }
                       ];
 

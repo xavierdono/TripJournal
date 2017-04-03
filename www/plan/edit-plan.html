@@ -3,9 +3,9 @@
 		<label class="item item-input">
       		<textarea rows="10" ng-model="plan.comment"></textarea>
 		</label>
-    	<ion-view direction="x" style="height:100px; min-height: 100px; white-space: nowrap;">
-			<img ng-repeat="image in images" ng-src="{{ urlForImage(image) }}" style="height:100px; padding: 5px 5px 5px 5px;"/>
-		</ion-view>
+    	<ion-scroll direction="x" style="height:100px; min-height: 100px; overflow: scroll; white-space: nowrap;">
+      <img ng-repeat="image in images" ng-src="{{ urlForImage(image) }}" style="height:100px; padding: 5px 5px 5px 5px;" ng-click="showMedia(urlForImage(image))"/>
+    </ion-scroll>
 		<label class="item item-input">      
     		<button class="button button-block button-positive" ng-click="addMedia()">
 			  Ajouter une photo
