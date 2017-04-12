@@ -50,6 +50,8 @@
         DB.query("INSERT INTO trip (default_image, title, date, dateDebut, dateFin, clos) VALUES (?, ?, ?, ?, ?, ?)", ['img/trip/trip.jpg', trip.title, trip.date, trip.dateDebut, trip.dateFin, trip.clos]);
       },
       removeTrip: function (tripId) {
+        DB.query("DELETE FROM image WHERE id_trip = ?", [tripId]);
+        DB.query("DELETE FROM day WHERE id_trip = ?", [tripId]);
         DB.query("DELETE FROM trip WHERE id_trip = ?", [tripId]);
       },
       closeTrip: function (tripId) {

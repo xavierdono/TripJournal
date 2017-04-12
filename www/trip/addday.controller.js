@@ -3,7 +3,7 @@
 
   angular.module('starter.addday', [])
 
-  .controller('AddDayCtrl', function ($scope, $stateParams, $ionicActionSheet, ImageService, FileService, TripService, $ionicModal, $ionicPopup) {
+  .controller('AddDayCtrl', function ($scope, $stateParams, $ionicActionSheet, ImageService, FileService, TripService, $ionicModal) {
     $scope.images = FileService.getImages();
     $scope.tripId = $stateParams.tripId;
 
@@ -59,7 +59,7 @@
             $scope.addImage(index);
           }
         });
-    }
+    };
 
     // Ajoute la journée dans le voyage
     $scope.addDay = function (day) {
@@ -73,37 +73,20 @@
       TripService.addDay($scope.tripId, new_day, FileService.getImages());
       FileService.clearImages();
       window.location.href = '#/tab/trip.show/' + $scope.tripId;
-    }
-
-    // Cloture le voyage
-    $scope.closeTrip = function () {
-      var confirmPopup = $ionicPopup.confirm({
-          title: 'Attention',
-          template: 'Etes-vous sur de cloturer ce voyage ?',
-          cancelText: 'Non',
-          okText: 'Oui'
-        });
-
-      confirmPopup.then(function (res) {
-        if (res) {
-          TripService.closeTrip($scope.tripId);
-          window.location.href = '#/tab/trip';
-        }
-      });
-    }
+    };
 
     // Récupère le dossier des images
     $scope.urlForImage = function (imageName) {
       // Charger les images par voyage ($scope.tripId)
       var trueOrigin = cordova.file.dataDirectory + '/' + $scope.tripId + '/' + imageName;
       return trueOrigin;
-    }
+    };
 
     // Ajoute l'image
     $scope.addImage = function (type) {
       $scope.hideSheet();
       // Sauvegarder les images par voyage ($scope.tripId)
       ImageService.handleMediaDialog(type, $scope.tripId);
-    }
+    };
   });
 })();
