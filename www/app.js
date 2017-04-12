@@ -11,6 +11,7 @@
       'starter.trip',
       'starter.addtrip',
       'starter.showtrip',
+      'starter.showfinaltrip',
       'starter.addday',
       'starter.editday',
       'starter.services.db',
@@ -138,9 +139,9 @@
       }
     })
 
-    // Afficher un voyage (Affiche les jours)
+    // Afficher un voyage non-clos (Affiche les jours)
     .state('tab.trip-show', {
-      url: '/trip.show/:tripId',
+      url: '/trip.show/0/:tripId',
       views: {
         'tab-trip': {
           templateUrl: 'trip/show-trip.html',
@@ -149,7 +150,18 @@
       }
     })
 
-    // Ajout une journée
+    // Afficher un voyage clos (Affiche le voyage complet)
+    .state('tab.trip-finalshow', {
+      url: '/trip.show/1/:tripId',
+      views: {
+        'tab-trip': {
+          templateUrl: 'trip/show-final-trip.html',
+          controller: 'ShowFinalTripCtrl'
+        }
+      }
+    })
+
+    // Ajouter une journée
     .state('tab.day-add', {
       url: '/day.add/:tripId',
       views: {

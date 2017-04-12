@@ -30,7 +30,7 @@
 
     return {
       all: function () {
-        return DB.query('SELECT * FROM trip WHERE clos = 0 ORDER BY dateDebut DESC').then(function (result) {
+        return DB.query('SELECT * FROM trip ORDER BY dateDebut DESC').then(function (result) {
           return DB.fetchAll(result);
         });
       },

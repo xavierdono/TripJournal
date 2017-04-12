@@ -12,7 +12,7 @@ module.exports = function(config) {
       'test/services/*.js'
     ],
     preprocessors: {
-      'www/services/trip.service.js': ['coverage']
+      'www/services/*.js': ['coverage']
     },
     reporters: ['progress', 'coverage'],
     coverageReporter: {
@@ -25,5 +25,5 @@ module.exports = function(config) {
     autoWatch: false,
     browsers: ['PhantomJS'],
     singleRun: true
-  })
-}
+  });
+};

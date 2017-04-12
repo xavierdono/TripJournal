@@ -1,19 +1,22 @@
 <ion-view view-title="Mes carnets de voyage">
+  <ion-nav-buttons side="right">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
   <ion-content class="padding">
     <ion-list no-lines>
-      <ion-item ng-repeat="trip in trips" href="#/tab/trip.show/{{ trip.id_trip }}">
-      <div class="module mid" style="background-image: url({{ trip.default_image }});">
-        <h2>{{ trip.title }}</h2>
-        <p>{{ trip.date }}</p>
-      </div>
-      </ion-item>	  	
+      <ion-item ng-repeat="trip in trips" href="#/tab/trip.show/{{ trip.clos }}/{{ trip.id_trip }}">
+        <div class="module mid" style="background-image: url({{ trip.default_image }});">
+          <h2>{{ trip.title }}</h2>
+          <p>{{ trip.date }}</p>
+        </div>
+      </ion-item>
     </ion-list>
   </ion-content>
-	<div class="float-button">
-		<span class="height-fix">
+  <div class="float-button">
+    <span class="height-fix">
 	   		<a class="content" href="#/tab/trip.add">
 	    		<i class="ion-android-add"> </i>
 	   		</a>
 	  	</span>
-	</div>  
+  </div>
 </ion-view>
