@@ -46,7 +46,6 @@
         self.query("INSERT INTO day (id_trip, title, date, dateShow, comment) VALUES (?, ?, ?, ?, ?)", [id_trip, 'Découverte', new Date('01/11/2017'), '11/01/2017', 'Super rues']);
         self.query("INSERT INTO day (id_trip, title, date, dateShow, comment) VALUES (?, ?, ?, ?, ?)", [id_trip, 'Musée', new Date('01/12/2017'), '12/01/2017', 'Ouah']);
       });
-
     };
 
     self.query = function (query, bindings) {

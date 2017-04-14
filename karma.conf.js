@@ -1,7 +1,8 @@
 module.exports = function(config) {
   config.set({
     basePath: '',
-    frameworks: ['mocha', 'chai-sinon'],
+    frameworks: ['qunit'],
+    plugins: ['karma-qunit', 'karma-coverage', 'karma-phantomjs-launcher'],
     files: [
       'node_modules/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
