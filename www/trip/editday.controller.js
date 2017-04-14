@@ -20,7 +20,9 @@
     });
 
     TripService.getDay($scope.tripId, $scope.dayId).then(function (day) {
+      var d = Date.parse(day.date);
       $scope.day = day;
+      $scope.day.date = new Date(d);
     });
 
     // Charge la modal
