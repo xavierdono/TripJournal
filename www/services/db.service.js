@@ -38,13 +38,13 @@
       self.query("CREATE TABLE IF NOT EXISTS image_plan (id_image integer primary key, id_plan integer, name text)");
 
       // Ajoute un voyage
-      self.query("INSERT INTO trip (default_image, title, date, dateDebut, dateFin, clos) VALUES (?, ?, ?, ?, ?, ?)", ['img/trip/titre.jpg', 'Australie', 'Février 2017, 7 jours', new Date('01/10/2017'), '', 0]).then(function (result) {
+      self.query("INSERT INTO trip (default_image, title, date, dateDebut, dateFin, clos) VALUES (?, ?, ?, ?, ?, ?)", ['img/trip/titre.jpg', 'Australie', 'Janvier 2017, 3 jours', new Date('2017-01-10').toISOString(), new Date('2017-01-12').toISOString(), 0]).then(function (result) {
         var id_trip = result.insertId;
 
         // Ajoute les jours
-        self.query("INSERT INTO day (id_trip, title, date, dateShow, comment) VALUES (?, ?, ?, ?, ?)", [id_trip, 'Balade', new Date('01/10/2017'), '10/01/2017', 'Super soleil']);
-        self.query("INSERT INTO day (id_trip, title, date, dateShow, comment) VALUES (?, ?, ?, ?, ?)", [id_trip, 'Découverte', new Date('01/11/2017'), '11/01/2017', 'Super rues']);
-        self.query("INSERT INTO day (id_trip, title, date, dateShow, comment) VALUES (?, ?, ?, ?, ?)", [id_trip, 'Musée', new Date('01/12/2017'), '12/01/2017', 'Ouah']);
+        self.query("INSERT INTO day (id_trip, title, date, dateShow, comment) VALUES (?, ?, ?, ?, ?)", [id_trip, 'Balade', new Date('2017-01-10').toISOString(), '10/01/2017', 'Super soleil']);
+        self.query("INSERT INTO day (id_trip, title, date, dateShow, comment) VALUES (?, ?, ?, ?, ?)", [id_trip, 'Découverte', new Date('2017-01-11').toISOString(), '11/01/2017', 'Super rues']);
+        self.query("INSERT INTO day (id_trip, title, date, dateShow, comment) VALUES (?, ?, ?, ?, ?)", [id_trip, 'Musée', new Date('2017-01-12').toISOString(), '12/01/2017', 'Ouah']);
       });
 
     };
