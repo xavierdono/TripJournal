@@ -37,7 +37,7 @@
     $scope.showMedia = function (image) {
       $scope.img = image;
       $scope.modal.show();
-    }
+    };
 
     // Fonction modal
     $scope.deleteImage = function () {
@@ -46,7 +46,7 @@
 
       $scope.img = null;
       $scope.modal.hide();
-    }
+    };
 
     // Fonction modal
     $scope.setDefaultImage = function (response) {
@@ -56,7 +56,7 @@
 
       $scope.img = null;
       $scope.modal.hide();
-    }
+    };
 
     // Fix bug with <label>
     $scope.editDay = function (day) {
@@ -70,14 +70,14 @@
 
       // TODO : Ajout des images manquantes
       TripService.editDay($scope.tripId, edited_day);      
-      window.location.href = '#/tab/trip.show/' + $scope.tripId;
-    }
+      window.location.href = '#/tab/trip.show/0/' + $scope.tripId;
+    };
 
     $scope.urlForImage = function (imageName) {
       // Charger les images par voyage ($scope.tripId)
       var trueOrigin = cordova.file.dataDirectory + $scope.tripId + '/' + imageName;
       return trueOrigin;
-    }
+    };
 
     $scope.addMedia = function () {
       $scope.hideSheet = $ionicActionSheet.show({
@@ -93,13 +93,13 @@
             $scope.addImage(index);
           }
         });
-    }
+    };
 
     $scope.addImage = function (type) {
       $scope.hideSheet();
       // Sauvegarder les images par voyage ($scope.tripId)
       ImageService.handleMediaDialog(type, $scope.tripId, $scope.dayId);
-    }
+    };
 
   });
 })();

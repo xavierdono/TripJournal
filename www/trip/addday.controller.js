@@ -42,7 +42,7 @@
 
       $scope.img = null;
       $scope.modal.hide();
-    }
+    };
 
     // Permet de sélectionner la source de la photo
     $scope.addMedia = function () {
@@ -72,7 +72,7 @@
 
       TripService.addDay($scope.tripId, new_day, FileService.getImages());
       FileService.clearImages();
-      window.location.href = '#/tab/trip.show/' + $scope.tripId;
+      window.location.href = '#/tab/trip.show/0/' + $scope.tripId;
     };
 
     // Récupère le dossier des images
